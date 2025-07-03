@@ -1,0 +1,33 @@
+---
+import { getLangFromUrl, useTranslations } from '@/i18n/config';
+import WaitlistModal from './WaitlistModal.astro';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+function getLocalizedPath(path: string) {
+  if (lang === 'es') {
+    return `/es${path}`;
+  }
+  return path;
+}
+---
+
+<section class="hero" id="main-content">
+  <div class="container">
+    <div class="hero-content">
+      <h1>{t('home.title')}</h1>
+      <p class="hero-subtitle">{t('home.subtitle')}</p>
+      <div class="hero-cta">
+        <a href={getLocalizedPath('/contact')} class="btn btn-primary">
+          {t('home.cta.primary')}
+        </a>
+        <button type="button" class="btn btn-secondary" onclick="openWaitlistModal()">
+          {t('home.cta.secondary')}
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<WaitlistModal /> 

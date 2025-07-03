@@ -1,0 +1,255 @@
+---
+import { getLangFromUrl, useTranslations } from '@/i18n/config';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const steps = [
+  {
+    number: 1,
+    title: t('how-it-works.step1'),
+    description: t('how-it-works.step1.desc'),
+    icon: '⚡'
+  },
+  {
+    number: 2,
+    title: t('how-it-works.step2'),
+    description: t('how-it-works.step2.desc'),
+    icon: '🎨'
+  },
+  {
+    number: 3,
+    title: t('how-it-works.step3'),
+    description: t('how-it-works.step3.desc'),
+    icon: '🔍'
+  },
+  {
+    number: 4,
+    title: t('how-it-works.step4'),
+    description: t('how-it-works.step4.desc'),
+    icon: '👥'
+  }
+];
+---
+
+<section class="section" id="features">
+  <div class="container">
+    <h2 class="text-center mb-8">{t('how-it-works.title')}</h2>
+    <div class="steps-container">
+      {steps.map((step, index) => (
+        <div class="step">
+          <div class="step-number">
+            <span>{step.number}</span>
+          </div>
+          <div class="step-content">
+            <div class="step-icon">{step.icon}</div>
+            <h3>{step.title}</h3>
+            <p>{step.description}</p>
+          </div>
+          {index < steps.length - 1 && (
+            <div class="step-connector" aria-hidden="true">
+              <div class="connector-line"></div>
+              <div class="connector-arrow">→</div>
+            </div>
+          )}
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .section {
+    padding: 5rem 0;
+    background: linear-gradient(135deg, #f9fafb 0%, #e5e7eb 100%);
+  }
+  
+  .section h2 {
+    text-align: center;
+    color: var(--color-dark);
+    margin-bottom: 3rem;
+    font-size: 2.5rem;
+    font-weight: 700;
+  }
+  
+  .steps-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  
+  .step {
+    background: white;
+    border-radius: 16px;
+    padding: 1.5rem;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.1);
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+    position: relative;
+    min-height: 320px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .step:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 24px rgba(37, 99, 235, 0.2);
+    border-color: var(--color-primary);
+  }
+  
+  .step-number {
+    width: 60px;
+    height: 60px;
+    background: var(--color-primary);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0 auto 1.5rem;
+    position: relative;
+    z-index: 2;
+  }
+  
+  .step-content {
+    text-align: center;
+  }
+  
+  .step-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    display: block;
+  }
+  
+  .step h3 {
+    color: var(--color-dark);
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+    line-height: 1.4;
+  }
+  
+  .step p {
+    color: var(--color-gray-600);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .step-connector {
+    position: absolute;
+    top: 60px;
+    right: -40px;
+    width: 80px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 3;
+  }
+
+  .connector-line {
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(to right, var(--color-primary), var(--color-purple-primary));
+    border-radius: 2px;
+    position: absolute;
+  }
+
+  .connector-arrow {
+    font-size: 1.5rem;
+    color: var(--color-primary);
+    background: white;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(37, 99, 235, 0.2);
+    position: relative;
+    z-index: 2;
+  }
+  
+  @media (max-width: 768px) {
+    .section h2 {
+      font-size: 1.8rem;
+      margin-bottom: 2rem;
+      padding: 0 1rem;
+    }
+    
+    .steps-container {
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.8rem;
+      padding: 0 1rem;
+    }
+    
+    .step {
+      padding: 1rem;
+      min-height: 280px;
+    }
+    
+    .step-number {
+      width: 40px;
+      height: 40px;
+      font-size: 1rem;
+      margin-bottom: 1rem;
+    }
+    
+    .step-icon {
+      font-size: 2rem;
+      margin-bottom: 0.8rem;
+    }
+    
+    .step h3 {
+      font-size: 1rem;
+      margin-bottom: 0.8rem;
+      line-height: 1.3;
+    }
+    
+    .step p {
+      font-size: 0.8rem;
+      line-height: 1.4;
+    }
+    
+    .step-connector {
+      top: 40px;
+      right: -20px;
+      width: 40px;
+    }
+    
+    .connector-line {
+      width: 30px;
+    }
+    
+    .connector-arrow {
+      width: 20px;
+      height: 20px;
+      font-size: 1rem;
+    }
+  }
+  
+  @media (min-width: 769px) and (max-width: 1200px) {
+    .steps-container {
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.2rem;
+    }
+    
+    .step {
+      padding: 1.3rem;
+    }
+    
+    .step h3 {
+      font-size: 1.1rem;
+    }
+    
+    .step p {
+      font-size: 0.9rem;
+    }
+  }
+</style> 

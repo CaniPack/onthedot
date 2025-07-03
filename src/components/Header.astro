@@ -1,0 +1,476 @@
+---
+import { getLangFromUrl, useTranslations } from '@/i18n/config';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const currentPath = Astro.url.pathname;
+const isSpanish = lang === 'es';
+
+function getLocalizedPath(path: string) {
+  if (isSpanish) {
+    return `/es${path}`;
+  }
+  return path;
+}
+
+function getAlternateLangPath(path: string) {
+  if (isSpanish) {
+    return path.replace('/es', '') || '/';
+  }
+  return `/es${path}`;
+}
+---
+
+<header class="header">
+  <div class="container">
+    <nav class="navbar">
+      <!-- Logo -->
+      <a href={getLocalizedPath('/')} class="logo">
+        <div class="logo-icon">
+          <svg viewBox="0 0 24 24" fill="none">
+            <circle cx="12" cy="12" r="10" fill="#16a34a"/>
+            <path d="M9.5 12.5L11.5 14.5L16.5 9.5" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <rect x="11.5" y="6" width="1" height="4" fill="white" rx="0.5"/>
+          </svg>
+        </div>
+        <div class="logo-text">
+          <span class="brand-main">OntheDot</span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation -->
+      <ul class="nav-menu desktop-nav">
+        <li><a href={getLocalizedPath('/')} class="nav-link">{t('nav.home')}</a></li>
+        <li><a href={getLocalizedPath('/#features')} class="nav-link">{t('nav.features')}</a></li>
+        <li><a href={getLocalizedPath('/#pricing')} class="nav-link">{t('nav.pricing')}</a></li>
+        <li><a href={getLocalizedPath('/contact')} class="nav-link">{t('nav.contact')}</a></li>
+      </ul>
+
+      <!-- Desktop Actions -->
+      <div class="nav-actions desktop-nav">
+        <a href={getAlternateLangPath(currentPath)} class="lang-toggle" data-lang-switch={isSpanish ? 'en' : 'es'}>
+          <span class="lang-icon">🌐</span>
+          <span>{isSpanish ? 'English' : 'Español'}</span>
+        </a>
+        <a href={getLocalizedPath('/contact')} class="cta-button">
+          {t('home.cta.primary')}
+        </a>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <button class="mobile-menu-btn" aria-label="Toggle menu" id="mobile-menu-btn">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+    </nav>
+
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav" id="mobile-nav">
+      <ul class="mobile-nav-menu">
+        <li><a href={getLocalizedPath('/')} class="mobile-nav-link">{t('nav.home')}</a></li>
+        <li><a href={getLocalizedPath('/#features')} class="mobile-nav-link">{t('nav.features')}</a></li>
+        <li><a href={getLocalizedPath('/#pricing')} class="mobile-nav-link">{t('nav.pricing')}</a></li>
+        <li><a href={getLocalizedPath('/contact')} class="mobile-nav-link">{t('nav.contact')}</a></li>
+        <li class="mobile-actions">
+          <a href={getAlternateLangPath(currentPath)} class="mobile-lang-toggle" data-lang-switch={isSpanish ? 'en' : 'es'}>
+            <span>🌐</span>
+            <span>{isSpanish ? 'English' : 'Español'}</span>
+          </a>
+          <a href={getLocalizedPath('/contact')} class="mobile-cta-button">
+            {t('home.cta.primary')}
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</header>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileNav = document.getElementById('mobile-nav');
+    
+    if (mobileMenuBtn && mobileNav) {
+      mobileMenuBtn.addEventListener('click', function() {
+        mobileMenuBtn.classList.toggle('active');
+        mobileNav.classList.toggle('active');
+        document.body.classList.toggle('menu-open');
+      });
+
+      // Close menu when clicking on a link
+      const mobileLinks = mobileNav.querySelectorAll('a');
+      mobileLinks.forEach(link => {
+        link.addEventListener('click', function() {
+          mobileMenuBtn.classList.remove('active');
+          mobileNav.classList.remove('active');
+          document.body.classList.remove('menu-open');
+        });
+      });
+
+      // Close menu when clicking outside
+      document.addEventListener('click', function(e) {
+        const target = e.target as HTMLElement;
+        if (target && !mobileMenuBtn.contains(target) && !mobileNav.contains(target)) {
+          mobileMenuBtn.classList.remove('active');
+          mobileNav.classList.remove('active');
+          document.body.classList.remove('menu-open');
+        }
+      });
+    }
+  });
+</script>
+
+<style>
+  .header {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    transition: all 0.3s ease;
+  }
+
+  .header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(248, 250, 252, 0.9));
+    z-index: -1;
+  }
+
+  .navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 0;
+    position: relative;
+  }
+
+  /* Logo Styles */
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    text-decoration: none;
+    z-index: 1001;
+    position: relative;
+  }
+
+  .logo-icon {
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+  }
+
+  .logo-icon svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .logo:hover .logo-icon {
+    transform: translateY(-2px) scale(1.05);
+  }
+
+  .logo-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1;
+  }
+
+  .brand-main {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #16a34a;
+    letter-spacing: -0.5px;
+  }
+
+  /* Desktop Navigation */
+  .desktop-nav {
+    display: none;
+  }
+
+  .nav-menu {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 2rem;
+  }
+
+  .nav-link {
+    color: var(--color-gray-700);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    padding: 0.5rem 0;
+    position: relative;
+    transition: all 0.3s ease;
+  }
+
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--color-primary), #7c3aed);
+    transition: width 0.3s ease;
+  }
+
+  .nav-link:hover {
+    color: var(--color-primary);
+  }
+
+  .nav-link:hover::after {
+    width: 100%;
+  }
+
+  /* Desktop Actions */
+  .nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .lang-toggle {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--color-gray-600);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    background: var(--color-gray-50);
+    border: 1px solid var(--color-gray-200);
+    transition: all 0.3s ease;
+  }
+
+  .lang-toggle:hover {
+    background: var(--color-gray-100);
+    color: var(--color-gray-800);
+    transform: translateY(-1px);
+  }
+
+  .lang-icon {
+    font-size: 1rem;
+  }
+
+  .cta-button {
+    background: linear-gradient(135deg, var(--color-primary), #1d4ed8);
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .cta-button:hover {
+    background: linear-gradient(135deg, #1d4ed8, #1e40af);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
+  }
+
+  /* Mobile Menu Button */
+  .mobile-menu-btn {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 1001;
+    position: relative;
+  }
+
+  .hamburger-line {
+    width: 24px;
+    height: 2px;
+    background: var(--color-gray-700);
+    margin: 3px 0;
+    transition: all 0.3s ease;
+    transform-origin: center;
+  }
+
+  .mobile-menu-btn.active .hamburger-line:nth-child(1) {
+    transform: rotate(45deg) translate(6px, 6px);
+  }
+
+  .mobile-menu-btn.active .hamburger-line:nth-child(2) {
+    opacity: 0;
+  }
+
+  .mobile-menu-btn.active .hamburger-line:nth-child(3) {
+    transform: rotate(-45deg) translate(6px, -6px);
+  }
+
+  /* Mobile Navigation */
+  .mobile-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(20px);
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    z-index: 1000;
+    overflow-y: auto;
+  }
+
+  .mobile-nav.active {
+    transform: translateX(0);
+  }
+
+  .mobile-nav-menu {
+    list-style: none;
+    margin: 0;
+    padding: 6rem 2rem 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .mobile-nav-link {
+    color: var(--color-gray-700);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.25rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--color-gray-100);
+    transition: all 0.3s ease;
+  }
+
+  .mobile-nav-link:hover {
+    color: var(--color-primary);
+    padding-left: 1rem;
+  }
+
+  .mobile-actions {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 2px solid var(--color-gray-100);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .mobile-lang-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    color: var(--color-gray-600);
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 1rem;
+    border-radius: 12px;
+    background: var(--color-gray-50);
+    border: 1px solid var(--color-gray-200);
+    transition: all 0.3s ease;
+  }
+
+  .mobile-lang-toggle:hover {
+    background: var(--color-gray-100);
+    color: var(--color-gray-800);
+  }
+
+  .mobile-cta-button {
+    background: linear-gradient(135deg, var(--color-primary), #1d4ed8);
+    color: white;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.1rem;
+    padding: 1.25rem 2rem;
+    border-radius: 12px;
+    text-align: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 20px rgba(37, 99, 235, 0.3);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .mobile-cta-button:hover {
+    background: linear-gradient(135deg, #1d4ed8, #1e40af);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(37, 99, 235, 0.4);
+  }
+
+  /* Prevent body scroll when menu is open */
+  body.menu-open {
+    overflow: hidden;
+  }
+
+  /* Desktop Styles */
+  @media (min-width: 768px) {
+    .desktop-nav {
+      display: flex;
+    }
+
+    .mobile-menu-btn {
+      display: none;
+    }
+
+    .mobile-nav {
+      display: none;
+    }
+
+    .navbar {
+      padding: 1.25rem 0;
+    }
+
+    .logo-icon {
+      width: 45px;
+      height: 45px;
+    }
+
+    .logo-icon svg {
+      width: 26px;
+      height: 26px;
+    }
+
+    .brand-main {
+      font-size: 1.75rem;
+    }
+
+    .brand-accent {
+      font-size: 0.8rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .nav-menu {
+      gap: 2.5rem;
+    }
+
+    .nav-link {
+      font-size: 1rem;
+    }
+
+    .cta-button {
+      font-size: 1rem;
+      padding: 0.875rem 1.75rem;
+    }
+  }
+</style> 

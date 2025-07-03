@@ -1,0 +1,475 @@
+---
+import { getLangFromUrl, useTranslations } from '@/i18n/config';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const integrations = [
+  {
+    title: t('integrations.google'),
+    description: lang === 'es' 
+      ? 'Sincronización automática bidireccional con tu Google Calendar. Evita solapamientos y mantén todo organizado en un solo lugar.'
+      : 'Automatic bidirectional synchronization with your Google Calendar. Avoid overlaps and keep everything organized in one place.',
+    features: lang === 'es' 
+      ? [
+          'Sincronización en tiempo real',
+          'Detección automática de conflictos',
+          'Eventos visibles en ambas plataformas',
+          'Configuración en un solo clic'
+        ]
+      : [
+          'Real-time synchronization',
+          'Automatic conflict detection',
+          'Events visible on both platforms',
+          'One-click setup'
+        ],
+    status: 'available',
+    mockup: 'calendar-integration'
+  },
+  {
+    title: t('integrations.whatsapp'),
+    description: lang === 'es' 
+      ? 'Envía recordatorios automáticos por WhatsApp a tus clientes. Reduce las inasistencias y mejora la comunicación.'
+      : 'Send automatic WhatsApp reminders to your clients. Reduce no-shows and improve communication.',
+    features: lang === 'es' 
+      ? [
+          'Recordatorios automáticos 24h antes',
+          'Mensajes personalizables',
+          'Confirmación de recepción',
+          'Notificaciones de cancelación'
+        ]
+      : [
+          'Automatic reminders 24h before',
+          'Customizable messages',
+          'Receipt confirmation',
+          'Cancellation notifications'
+        ],
+    status: 'available',
+    mockup: 'whatsapp-automation'
+  },
+  {
+    title: t('integrations.payments'),
+    description: lang === 'es' 
+      ? 'Recibe pagos online de forma segura. Acepta abonos o pagos completos directamente desde tu página de agendamiento.'
+      : 'Receive secure online payments. Accept deposits or full payments directly from your booking page.',
+    features: lang === 'es' 
+      ? [
+          'Pasarelas de pago seguras',
+          'Abonos y pagos completos',
+          'Facturación automática',
+          'Reportes financieros'
+        ]
+      : [
+          'Secure payment gateways',
+          'Deposits and full payments',
+          'Automatic invoicing',
+          'Financial reports'
+        ],
+    status: 'available',
+    mockup: 'payment-system'
+  },
+  {
+    title: t('integrations.coming'),
+    description: lang === 'es' 
+      ? 'Próximamente integración con Google Maps para citas a domicilio con cálculo automático de tiempo de traslado.'
+      : 'Coming soon: Google Maps integration for home visits with automatic travel time calculation.',
+    features: lang === 'es' 
+      ? [
+          'Cálculo automático de distancias',
+          'Tiempo de traslado incluido',
+          'Rutas optimizadas',
+          'Tarifas por ubicación'
+        ]
+      : [
+          'Automatic distance calculation',
+          'Travel time included',
+          'Optimized routes',
+          'Location-based pricing'
+        ],
+    status: 'coming-soon',
+    mockup: 'maps-integration'
+  }
+];
+---
+
+<section class="section">
+  <div class="container">
+    <h2>{t('integrations.title')}</h2>
+    
+    <div class="integrations-grid">
+      {integrations.map((integration, index) => (
+        <div class={`integration-item ${index % 2 === 1 ? 'reverse' : ''}`}>
+          <div class="content-section">
+            <div class="integration-header">
+              <h3>{integration.title}</h3>
+              <span class={`status-badge ${integration.status}`}>
+                {integration.status === 'available' 
+                  ? (lang === 'es' ? 'Disponible' : 'Available')
+                  : (lang === 'es' ? 'Próximamente' : 'Coming Soon')
+                }
+              </span>
+            </div>
+            
+            <p class="description">{integration.description}</p>
+            
+            <ul class="features-list">
+              {integration.features.map(feature => (
+                <li>{feature}</li>
+              ))}
+            </ul>
+          </div>
+          
+          <div class="mockup-section">
+            <div class={`app-mockup ${integration.mockup}`}>
+              <div class="mockup-content">
+                {integration.mockup === 'calendar-integration' && (
+                  <div class="calendar-mockup">
+                    <div class="calendar-header">📅 {lang === 'es' ? 'Mi Calendario' : 'My Calendar'}</div>
+                    <div class="calendar-sync">🔄 {lang === 'es' ? 'Sincronizado con Google' : 'Synced with Google'}</div>
+                    <div class="calendar-events">
+                      <div class="event">📍 {lang === 'es' ? 'Cita - Dr. García' : 'Appointment - Dr. García'}</div>
+                      <div class="event">💼 {lang === 'es' ? 'Consulta - María' : 'Consultation - María'}</div>
+                    </div>
+                  </div>
+                )}
+                
+                {integration.mockup === 'whatsapp-automation' && (
+                  <div class="whatsapp-mockup">
+                    <div class="whatsapp-header">💬 WhatsApp Business</div>
+                    <div class="whatsapp-message">
+                      <div class="message-bubble">
+                        {lang === 'es' 
+                          ? '¡Hola! Te recordamos tu cita mañana a las 15:00 con Dr. García. ¿Confirmas tu asistencia?'
+                          : 'Hello! Reminder: your appointment tomorrow at 3:00 PM with Dr. García. Please confirm attendance.'
+                        }
+                      </div>
+                      <div class="message-status">✓✓ {lang === 'es' ? 'Entregado' : 'Delivered'}</div>
+                    </div>
+                  </div>
+                )}
+                
+                {integration.mockup === 'payment-system' && (
+                  <div class="payment-mockup">
+                    <div class="payment-header">💳 {lang === 'es' ? 'Pagos Seguros' : 'Secure Payments'}</div>
+                    <div class="payment-form">
+                      <div class="payment-option">💰 ${lang === 'es' ? '50 - Abono (50%)' : '50 - Deposit (50%)'}</div>
+                      <div class="payment-option selected">💳 ${lang === 'es' ? '100 - Pago Completo' : '100 - Full Payment'}</div>
+                    </div>
+                    <div class="payment-button">🔒 {lang === 'es' ? 'Pagar Ahora' : 'Pay Now'}</div>
+                  </div>
+                )}
+                
+                {integration.mockup === 'maps-integration' && (
+                  <div class="maps-mockup">
+                    <div class="maps-header">🗺️ Google Maps</div>
+                    <div class="maps-route">
+                      <div class="route-info">📍 {lang === 'es' ? '15 min de traslado' : '15 min travel time'}</div>
+                      <div class="route-address">{lang === 'es' ? 'Av. Providencia 123' : '123 Providence Ave'}</div>
+                    </div>
+                    <div class="route-line">━━━━━━━━━━━</div>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .section {
+    padding: 6rem 0;
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  }
+
+  .section h2 {
+    text-align: center;
+    color: var(--color-dark);
+    margin-bottom: 4rem;
+    font-size: 2.5rem;
+    font-weight: 700;
+  }
+
+  .integrations-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 6rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .integration-item {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    padding: 3rem;
+    background: white;
+    border-radius: 24px;
+    box-shadow: 0 8px 32px rgba(37, 99, 235, 0.1);
+    border: 1px solid rgba(37, 99, 235, 0.1);
+  }
+
+  .integration-item.reverse {
+    direction: rtl;
+  }
+
+  .integration-item.reverse .content-section,
+  .integration-item.reverse .mockup-section {
+    direction: ltr;
+  }
+
+  .integration-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .integration-item h3 {
+    color: var(--color-dark);
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin: 0;
+  }
+
+  .status-badge {
+    padding: 0.6rem 1.2rem;
+    border-radius: 25px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.15);
+    border: 2px solid;
+    position: relative;
+    white-space: nowrap;
+  }
+
+  .status-badge.available {
+    background: linear-gradient(135deg, #16a34a, #22c55e);
+    color: white;
+    border-color: #16a34a;
+    box-shadow: 0 3px 12px rgba(22, 163, 74, 0.4);
+  }
+
+  .status-badge.available::before {
+    content: '✓';
+    margin-right: 0.5rem;
+  }
+
+  .status-badge.coming-soon {
+    background: linear-gradient(135deg, #2563eb, #3b82f6);
+    color: white;
+    border-color: #2563eb;
+    box-shadow: 0 3px 12px rgba(37, 99, 235, 0.4);
+  }
+
+  .status-badge.coming-soon::before {
+    content: '🚀';
+    margin-right: 0.5rem;
+  }
+
+  .status-badge:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 5px 16px rgba(0, 0, 0, 0.2);
+  }
+
+  .description {
+    color: var(--color-gray-600);
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+  }
+
+  .features-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .features-list li {
+    color: var(--color-gray-700);
+    font-size: 1rem;
+    line-height: 1.8;
+    padding-left: 1.5rem;
+    position: relative;
+  }
+
+  .features-list li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--color-green-primary);
+    font-weight: bold;
+  }
+
+  .app-mockup {
+    background: white;
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+    border: 1px solid #e2e8f0;
+    transform: perspective(1000px) rotateY(-5deg) rotateX(5deg);
+    transition: transform 0.3s ease;
+  }
+
+  .integration-item:hover .app-mockup {
+    transform: perspective(1000px) rotateY(0deg) rotateX(0deg);
+  }
+
+  .mockup-content {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+
+  /* Calendar Mockup */
+  .calendar-header {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #e2e8f0;
+  }
+
+  .calendar-sync {
+    color: var(--color-green-primary);
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .calendar-events .event {
+    background: var(--color-blue-secondary);
+    color: var(--color-primary);
+    padding: 0.8rem;
+    margin-bottom: 0.5rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+  }
+
+  /* WhatsApp Mockup */
+  .whatsapp-header {
+    background: #25D366;
+    color: white;
+    padding: 1rem;
+    border-radius: 8px 8px 0 0;
+    font-weight: 600;
+    margin: -2rem -2rem 1.5rem -2rem;
+  }
+
+  .message-bubble {
+    background: #E3F2FD;
+    padding: 1rem;
+    border-radius: 16px 16px 16px 4px;
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
+    font-size: 0.9rem;
+  }
+
+  .message-status {
+    text-align: right;
+    color: #25D366;
+    font-size: 0.8rem;
+  }
+
+  /* Payment Mockup */
+  .payment-header {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+
+  .payment-option {
+    padding: 1rem;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    margin-bottom: 0.8rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .payment-option.selected {
+    border-color: var(--color-primary);
+    background: var(--color-blue-secondary);
+    color: var(--color-primary);
+  }
+
+  .payment-button {
+    background: var(--color-primary);
+    color: white;
+    padding: 1rem;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: 600;
+    margin-top: 1rem;
+  }
+
+  /* Maps Mockup */
+  .maps-header {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    margin-bottom: 1.5rem;
+  }
+
+  .route-info {
+    background: var(--color-green-secondary);
+    color: var(--color-green-primary);
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    font-weight: 600;
+  }
+
+  .route-address {
+    color: var(--color-gray-600);
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+  }
+
+  .route-line {
+    color: var(--color-primary);
+    font-size: 1.5rem;
+    text-align: center;
+    letter-spacing: 2px;
+  }
+
+  @media (max-width: 768px) {
+    .section {
+      padding: 4rem 0;
+    }
+
+    .section h2 {
+      font-size: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .integrations-grid {
+      gap: 3rem;
+      padding: 0 1rem;
+    }
+
+    .integration-item {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      padding: 2rem;
+    }
+
+    .integration-item.reverse {
+      direction: ltr;
+    }
+
+    .integration-item h3 {
+      font-size: 1.5rem;
+    }
+
+    .app-mockup {
+      transform: none;
+      padding: 1.5rem;
+    }
+  }
+</style> 

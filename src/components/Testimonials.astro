@@ -1,0 +1,960 @@
+---
+import { getLangFromUrl, useTranslations } from '@/i18n/config';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const testimonials = [
+  // CATEGORÍA 1: DESTACAN BENEFICIOS (10)
+  {
+    quote: lang === 'es' 
+              ? 'Con OntheDot mi consulta siempre está llena y sin inasistencias. Los recordatorios automáticos fueron un game changer.'
+        : 'With OntheDot my practice is always full and without no-shows. Automatic reminders were a game changer.',
+    author: 'Dra. Camila Soto',
+    profession: lang === 'es' ? 'Nutricionista' : 'Nutritionist',
+    avatar: '👩‍⚕️',
+    rating: 5,
+    category: 'benefits'
+  },
+  {
+    quote: lang === 'es'
+      ? 'Automatizar reservas por WhatsApp y Google Calendar me ahorra 3 horas diarias. Increíble integración.'
+      : 'Automating bookings via WhatsApp and Google Calendar saves me 3 hours daily. Amazing integration.',
+    author: 'Juan Pablo Ríos', 
+    profession: lang === 'es' ? 'Kinesiólogo' : 'Physical Therapist',
+    avatar: '👨‍⚕️',
+    rating: 5,
+    category: 'benefits'
+  },
+  {
+    quote: lang === 'es'
+      ? 'Mis pacientes aman poder agendar online 24/7. Ya no perdemos citas por horarios de oficina.'
+      : 'My patients love being able to book online 24/7. We no longer lose appointments due to office hours.',
+    author: 'Dr. Ricardo Mendoza',
+    profession: lang === 'es' ? 'Dentista' : 'Dentist',
+    avatar: '👨‍⚕️',
+    rating: 5,
+    category: 'benefits'
+  },
+  {
+    quote: lang === 'es'
+      ? 'La página personalizada me da una imagen súper profesional. Mis clientes confían más en mis servicios.'
+      : 'The personalized page gives me a super professional image. My clients trust my services more.',
+    author: 'Lic. María Fernández',
+    profession: lang === 'es' ? 'Psicóloga' : 'Psychologist',
+    avatar: '👩‍💼',
+    rating: 5,
+    category: 'benefits'
+  },
+  {
+    quote: lang === 'es'
+      ? 'Los pagos online cambiaron todo. Ya no tengo que perseguir a pacientes por cobros pendientes.'
+      : 'Online payments changed everything. I no longer have to chase patients for outstanding payments.',
+    author: 'Dra. Ana López',
+    profession: lang === 'es' ? 'Ginecóloga' : 'Gynecologist',
+    avatar: '👩‍⚕️',
+    rating: 5,
+    category: 'benefits'
+  },
+  {
+    quote: lang === 'es'
+      ? 'Poder gestionar múltiples sucursales desde una sola plataforma es exactamente lo que necesitaba.'
+      : 'Being able to manage multiple locations from a single platform is exactly what I needed.',
+    author: 'Dr. Carlos Ruiz',
+    profession: lang === 'es' ? 'Fisioterapeuta' : 'Physiotherapist',
+    avatar: '👨‍⚕️',
+    rating: 5,
+    category: 'benefits'
+  },
+  {
+    quote: lang === 'es'
+      ? 'Los reportes me ayudan a entender mejor mi negocio. Datos claros para tomar mejores decisiones.'
+      : 'Reports help me understand my business better. Clear data to make better decisions.',
+    author: 'Lic. Sofía García',
+    profession: lang === 'es' ? 'Nutricionista Deportiva' : 'Sports Nutritionist',
+    avatar: '👩‍⚕️',
+    rating: 5,
+    category: 'benefits'
+  },
+  {
+    quote: lang === 'es'
+      ? 'La automatización me permite enfocarme en lo importante: atender a mis pacientes, no en tareas administrativas.'
+      : 'Automation allows me to focus on what matters: caring for my patients, not administrative tasks.',
+    author: 'Dr. Alejandro Torres',
+    profession: lang === 'es' ? 'Cardiólogo' : 'Cardiologist',
+    avatar: '👨‍⚕️',
+    rating: 5,
+    category: 'benefits'
+  },
+  {
+    quote: lang === 'es'
+      ? 'Mis clientes corporativos están impresionados con la facilidad para coordinar sesiones grupales.'
+      : 'My corporate clients are impressed with how easy it is to coordinate group sessions.',
+    author: 'Lic. Patricia Vega',
+    profession: lang === 'es' ? 'Coach Empresarial' : 'Business Coach',
+    avatar: '👩‍💼',
+    rating: 5,
+    category: 'benefits'
+  },
+  {
+    quote: lang === 'es'
+      ? 'La integración con mi calendario existente fue perfecta. No tuve que cambiar mis rutinas.'
+      : 'Integration with my existing calendar was perfect. I didn\'t have to change my routines.',
+    author: 'Dr. Fernando Silva',
+    profession: lang === 'es' ? 'Dermatólogo' : 'Dermatologist',
+    avatar: '👨‍⚕️',
+    rating: 5,
+    category: 'benefits'
+  },
+
+  // CATEGORÍA 2: BUENA GESTIÓN DE SERVICIO (10)
+  {
+    quote: lang === 'es'
+      ? 'Logré escalar mi consulta y manejar todo mi equipo en una sola plataforma. Gestión impecable.'
+      : 'I managed to scale my practice and manage my entire team on one platform. Impeccable management.',
+    author: 'Lic. Andrea Gómez',
+    profession: lang === 'es' ? 'Psicóloga' : 'Psychologist',
+    avatar: '👩‍💼',
+    rating: 5,
+    category: 'management'
+  },
+  {
+    quote: lang === 'es'
+      ? 'La coordinación entre mis 4 especialistas nunca fue tan fácil. Todo centralizado y organizado.'
+      : 'Coordination between my 4 specialists has never been so easy. Everything centralized and organized.',
+    author: 'Dr. Miguel Herrera',
+    profession: lang === 'es' ? 'Director Médico' : 'Medical Director',
+    avatar: '👨‍⚕️',
+    rating: 5,
+    category: 'management'
+  },
+  {
+    quote: lang === 'es'
+      ? 'Administrar horarios de 6 terapeutas era un caos. Ahora todo fluye perfectamente.'
+      : 'Managing schedules for 6 therapists was chaos. Now everything flows perfectly.',
+    author: 'Lic. Carmen Morales',
+    profession: lang === 'es' ? 'Directora de Spa' : 'Spa Director',
+    avatar: '👩‍💼',
+    rating: 5,
+    category: 'management'
+  },
+  {
+    quote: lang === 'es'
+      ? 'Los recordatorios automáticos redujeron las ausencias de 25% a 3%. Gestión inteligente.'
+      : 'Automatic reminders reduced no-shows from 25% to 3%. Smart management.',
+    author: 'Dra. Isabel Ramos',
+    profession: lang === 'es' ? 'Oftalmóloga' : 'Ophthalmologist',
+    avatar: '👩‍⚕️',
+    rating: 5,
+    category: 'management'
+  },
+  {
+    quote: lang === 'es'
+      ? 'Poder ver en tiempo real la ocupación de todas mis salas de tratamiento es invaluable.'
+      : 'Being able to see real-time occupancy of all my treatment rooms is invaluable.',
+    author: 'Dr. Roberto Castro',
+    profession: lang === 'es' ? 'Rehabilitación' : 'Rehabilitation',
+    avatar: '👨‍⚕️',
+    rating: 5,
+    category: 'management'
+  },
+  {
+    quote: lang === 'es'
+      ? 'La gestión de listas de espera automatizada me permitió optimizar al 100% mi agenda.'
+      : 'Automated waitlist management allowed me to optimize my schedule 100%.',
+    author: 'Lic. Valeria Jiménez',
+    profession: lang === 'es' ? 'Estilista Premium' : 'Premium Stylist',
+    avatar: '👩‍💼',
+    rating: 5,
+    category: 'management'
+  },
+  {
+    quote: lang === 'es'
+      ? 'Coordinamos 15 especialistas en 3 clínicas diferentes sin complicaciones. Sistema robusto.'
+      : 'We coordinate 15 specialists across 3 different clinics without complications. Robust system.',
+    author: 'Dr. Andrés Poveda',
+    profession: lang === 'es' ? 'Gerente Clínico' : 'Clinical Manager',
+    avatar: '👨‍💼',
+    rating: 5,
+    category: 'management'
+  },
+  {
+    quote: lang === 'es'
+      ? 'Las métricas detalladas me ayudan a optimizar horarios y maximizar la productividad del equipo.'
+      : 'Detailed metrics help me optimize schedules and maximize team productivity.',
+    author: 'Lic. Mónica Delgado',
+    profession: lang === 'es' ? 'Administradora de Salud' : 'Health Administrator',
+    avatar: '👩‍💼',
+    rating: 5,
+    category: 'management'
+  },
+  {
+    quote: lang === 'es'
+      ? 'La sincronización instantánea entre dispositivos mantiene a todo el equipo actualizado.'
+      : 'Instant synchronization between devices keeps the entire team updated.',
+    author: 'Dr. Tomás Vargas',
+    profession: lang === 'es' ? 'Traumatólogo' : 'Traumatologist',
+    avatar: '👨‍⚕️',
+    rating: 5,
+    category: 'management'
+  },
+  {
+    quote: lang === 'es'
+      ? 'Gestionar cancelaciones y reprogramaciones nunca fue tan eficiente. Tiempo valioso recuperado.'
+      : 'Managing cancellations and rescheduling has never been so efficient. Valuable time recovered.',
+    author: 'Dra. Beatriz Sandoval',
+    profession: lang === 'es' ? 'Endocrinóloga' : 'Endocrinologist',
+    avatar: '👩‍⚕️',
+    rating: 5,
+    category: 'management'
+  },
+
+  // CATEGORÍA 3: AYUDÓ A VENDER MÁS Y MEJOR IMAGEN (5)
+  {
+    quote: lang === 'es'
+      ? 'Mis ventas aumentaron 40% desde que uso la página profesional. Los clientes confían más.'
+      : 'My sales increased 40% since using the professional page. Clients trust more.',
+    author: 'Lic. Daniela Restrepo',
+    profession: lang === 'es' ? 'Consultora de Imagen' : 'Image Consultant',
+    avatar: '👩‍💼',
+    rating: 5,
+    category: 'sales'
+  },
+  {
+    quote: lang === 'es'
+      ? 'La facilidad de pago online convenció a pacientes que antes dudaban. 30% más de conversiones.'
+      : 'Easy online payment convinced patients who previously hesitated. 30% more conversions.',
+    author: 'Dr. Esteban Molina',
+    profession: lang === 'es' ? 'Cirujano Plástico' : 'Plastic Surgeon',
+    avatar: '👨‍⚕️',
+    rating: 5,
+    category: 'sales'
+  },
+  {
+    quote: lang === 'es'
+      ? 'Mis clientes corporativos ahora me ven como una empresa seria y tecnológica. Más contratos grandes.'
+      : 'My corporate clients now see me as a serious and technological company. More big contracts.',
+    author: 'Lic. Rodrigo Ospina',
+    profession: lang === 'es' ? 'Entrenador Corporativo' : 'Corporate Trainer',
+    avatar: '👨‍💼',
+    rating: 5,
+    category: 'sales'
+  },
+  {
+    quote: lang === 'es'
+      ? 'La página profesional me posicionó como experta. Ahora cobro 50% más por mis servicios.'
+      : 'The professional page positioned me as an expert. Now I charge 50% more for my services.',
+    author: 'Lic. Gabriela Martín',
+    profession: lang === 'es' ? 'Coach de Vida' : 'Life Coach',
+    avatar: '👩‍💼',
+    rating: 5,
+    category: 'sales'
+  },
+  {
+    quote: lang === 'es'
+      ? 'Los clientes recomiendan más fácilmente porque el proceso es tan profesional y simple.'
+      : 'Clients recommend more easily because the process is so professional and simple.',
+    author: 'Dr. Leonardo Peña',
+    profession: lang === 'es' ? 'Ortodoncista' : 'Orthodontist',
+    avatar: '👨‍⚕️',
+    rating: 5,
+    category: 'sales'
+  },
+
+  // CATEGORÍA 4: PROBLEMAS RESUELTOS RÁPIDAMENTE (5)
+  {
+    quote: lang === 'es'
+      ? 'Tuve un problema con la sincronización el viernes. El soporte lo resolvió en 10 minutos un sábado. Increíble.'
+      : 'Had a sync issue on Friday. Support solved it in 10 minutes on a Saturday. Incredible.',
+    author: 'Dra. Lucía Herrera',
+    profession: lang === 'es' ? 'Pediatra' : 'Pediatrician',
+    avatar: '👩‍⚕️',
+    rating: 5,
+    category: 'support'
+  },
+  {
+    quote: lang === 'es'
+      ? 'Mi equipo borró citas por error. En 15 minutos me ayudaron a recuperar todo desde el backup. Salvaron mi día.'
+      : 'My team accidentally deleted appointments. In 15 minutes they helped me recover everything from backup. Saved my day.',
+    author: 'Dr. Jaime Rueda',
+    profession: lang === 'es' ? 'Urólogo' : 'Urologist',
+    avatar: '👨‍⚕️',
+    rating: 5,
+    category: 'support'
+  },
+  {
+    quote: lang === 'es'
+      ? 'Los recordatorios dejaron de llegar por una configuración. Soporte me llamó proactivamente y lo arregló.'
+      : 'Reminders stopped coming due to a setting. Support called me proactively and fixed it.',
+    author: 'Lic. Natalia Gómez',
+    profession: lang === 'es' ? 'Terapeuta Ocupacional' : 'Occupational Therapist',
+    avatar: '👩‍⚕️',
+    rating: 5,
+    category: 'support'
+  },
+  {
+    quote: lang === 'es'
+      ? 'Una actualización causó problemas en mi integración. En 30 minutos tenía una solución personalizada.'
+      : 'An update caused issues with my integration. In 30 minutes I had a custom solution.',
+    author: 'Dr. Óscar Blanco',
+    profession: lang === 'es' ? 'Radiólogo' : 'Radiologist',
+    avatar: '👨‍⚕️',
+    rating: 5,
+    category: 'support'
+  },
+  {
+    quote: lang === 'es'
+      ? 'Configuré mal los horarios y perdí citas. Me ayudaron a recuperarlas y configurar bien todo en una videollamada.'
+      : 'I misconfigured schedules and lost appointments. They helped me recover them and set everything up correctly in a video call.',
+    author: 'Lic. Esperanza Cruz',
+    profession: lang === 'es' ? 'Fonoaudióloga' : 'Speech Therapist',
+    avatar: '👩‍⚕️',
+    rating: 5,
+    category: 'support'
+  }
+];
+---
+
+<section class="testimonials-section">
+  <div class="container">
+    <!-- Header -->
+    <div class="section-header">
+      <h2 class="section-title">{t('testimonials.title')}</h2>
+      <p class="section-subtitle">
+        {lang === 'es'
+                  ? 'Más de 10,000 profesionales confían en OntheDot para gestionar sus citas'
+        : 'Over 10,000 professionals trust OntheDot to manage their appointments'
+        }
+      </p>
+    </div>
+
+    <!-- Testimonials Carousel -->
+    <div class="testimonials-carousel" id="testimonials-carousel">
+      <div class="carousel-container">
+        <div class="testimonials-track" id="testimonials-track">
+          {testimonials.map((testimonial, index) => (
+            <div class={`testimonial-slide ${testimonial.category}`}>
+              <div class="testimonial-card">
+                <div class="card-header">
+                  <div class="quote-icon">
+                    <svg viewBox="0 0 24 24" fill="none">
+                      <path d="M9.135 9c-.685 0-1.24.555-1.24 1.24s.555 1.24 1.24 1.24c.685 0 1.24-.555 1.24-1.24S9.82 9 9.135 9zM14.865 9c-.685 0-1.24.555-1.24 1.24s.555 1.24 1.24 1.24c.685 0 1.24-.555 1.24-1.24S15.55 9 14.865 9z" fill="currentColor"/>
+                      <path d="M6 3h12a3 3 0 013 3v8a3 3 0 01-3 3H9.455l-3.94 3.94A1 1 0 014 20V6a3 3 0 013-3z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </div>
+                  <div class="rating">
+                    {Array.from({ length: testimonial.rating }, () => '⭐').join('')}
+                  </div>
+                </div>
+                
+                <blockquote class="testimonial-quote">
+                  "{testimonial.quote}"
+                </blockquote>
+                
+                <div class="testimonial-author">
+                  <div class="author-avatar">
+                    {testimonial.avatar}
+                  </div>
+                  <div class="author-info">
+                    <h4 class="author-name">{testimonial.author}</h4>
+                    <p class="author-profession">{testimonial.profession}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Navigation -->
+      <div class="carousel-navigation">
+        <button class="carousel-btn prev-btn" id="prev-btn" aria-label="Previous testimonial">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        
+        <div class="carousel-indicators" id="carousel-indicators">
+          <!-- Indicators will be generated by JavaScript -->
+        </div>
+        
+        <button class="carousel-btn next-btn" id="next-btn" aria-label="Next testimonial">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Category Filter -->
+      <div class="category-filter">
+        <button class="filter-btn active" data-category="all">
+          {lang === 'es' ? 'Todos' : 'All'}
+        </button>
+        <button class="filter-btn" data-category="benefits">
+          {lang === 'es' ? 'Beneficios' : 'Benefits'}
+        </button>
+        <button class="filter-btn" data-category="management">
+          {lang === 'es' ? 'Gestión' : 'Management'}
+        </button>
+        <button class="filter-btn" data-category="sales">
+          {lang === 'es' ? 'Ventas' : 'Sales'}
+        </button>
+        <button class="filter-btn" data-category="support">
+          {lang === 'es' ? 'Soporte' : 'Support'}
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const track = document.getElementById('testimonials-track') as HTMLElement | null;
+    const prevBtn = document.getElementById('prev-btn') as HTMLButtonElement | null;
+    const nextBtn = document.getElementById('next-btn') as HTMLButtonElement | null;
+    const indicators = document.getElementById('carousel-indicators') as HTMLElement | null;
+    const filterBtns = document.querySelectorAll('.filter-btn') as NodeListOf<HTMLButtonElement>;
+    const slides = document.querySelectorAll('.testimonial-slide') as NodeListOf<HTMLElement>;
+    
+    if (!track || !prevBtn || !nextBtn || !indicators) return;
+    
+    let currentIndex = 0;
+    let currentFilter = 'all';
+    let filteredSlides = Array.from(slides);
+    let slideWidth = 0;
+    let slidesToShow = 1;
+    let autoplayInterval: number | undefined;
+    
+    function calculateLayout() {
+      if (!track || !track.parentElement) return;
+      const containerWidth = track.parentElement.offsetWidth - 32; // Account for padding
+      
+      if (window.innerWidth >= 1024) {
+        slidesToShow = 3;
+        slideWidth = (containerWidth - 64) / 3; // Account for gaps
+      } else if (window.innerWidth >= 768) {
+        slidesToShow = 2;
+        slideWidth = (containerWidth - 32) / 2; // Account for gaps
+      } else {
+        slidesToShow = 1;
+        slideWidth = containerWidth;
+      }
+      
+      slides.forEach(slide => {
+        slide.style.minWidth = slideWidth + 'px';
+        slide.style.maxWidth = slideWidth + 'px';
+      });
+    }
+    
+    function createIndicators() {
+      if (!indicators) return;
+      indicators.innerHTML = '';
+      const indicatorCount = Math.ceil(filteredSlides.length / slidesToShow);
+      
+      for (let i = 0; i < indicatorCount; i++) {
+        const indicator = document.createElement('button');
+        indicator.className = 'indicator';
+        indicator.setAttribute('aria-label', `Go to slide ${i + 1}`);
+        indicator.addEventListener('click', () => goToSlide(i));
+        indicators.appendChild(indicator);
+      }
+      updateIndicators();
+    }
+    
+    function updateIndicators() {
+      const indicatorElements = document.querySelectorAll('.indicator');
+      const activeIndex = Math.floor(currentIndex / slidesToShow);
+      
+      indicatorElements.forEach((indicator, index) => {
+        indicator.classList.toggle('active', index === activeIndex);
+      });
+    }
+    
+    function filterTestimonials(category: string) {
+      currentFilter = category;
+      currentIndex = 0;
+      
+      slides.forEach(slide => {
+        const slideCategory = slide.classList.contains(category) || category === 'all';
+        slide.style.display = slideCategory ? 'block' : 'none';
+      });
+      
+      filteredSlides = Array.from(slides).filter(slide => {
+        return slide.style.display !== 'none';
+      });
+      
+      createIndicators();
+      updateSlidePosition();
+    }
+    
+    function updateSlidePosition() {
+      if (!track) return;
+      const translateX = -currentIndex * slideWidth;
+      track.style.transform = `translateX(${translateX}px)`;
+      updateIndicators();
+    }
+    
+    function goToSlide(index: number) {
+      const maxIndex = Math.max(0, filteredSlides.length - slidesToShow);
+      currentIndex = Math.min(index * slidesToShow, maxIndex);
+      updateSlidePosition();
+    }
+    
+    function nextSlide() {
+      const maxIndex = Math.max(0, filteredSlides.length - slidesToShow);
+      currentIndex = currentIndex + slidesToShow >= filteredSlides.length ? 0 : currentIndex + slidesToShow;
+      updateSlidePosition();
+    }
+    
+    function prevSlide() {
+      const maxIndex = Math.max(0, filteredSlides.length - slidesToShow);
+      currentIndex = currentIndex <= 0 ? maxIndex : currentIndex - slidesToShow;
+      updateSlidePosition();
+    }
+    
+    function startAutoplay() {
+      autoplayInterval = window.setInterval(nextSlide, 5000);
+    }
+    
+    function stopAutoplay() {
+      if (autoplayInterval) {
+        window.clearInterval(autoplayInterval);
+      }
+    }
+    
+    // Event listeners
+    nextBtn.addEventListener('click', () => {
+      nextSlide();
+      stopAutoplay();
+      startAutoplay();
+    });
+    
+    prevBtn.addEventListener('click', () => {
+      prevSlide();
+      stopAutoplay();
+      startAutoplay();
+    });
+    
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const category = btn.dataset.category;
+        if (category) {
+          filterTestimonials(category);
+        }
+        stopAutoplay();
+        startAutoplay();
+      });
+    });
+    
+    // Touch/swipe support
+    let startX = 0;
+    let currentX = 0;
+    let isDragging = false;
+    
+    if (track) {
+      track.addEventListener('touchstart', (e) => {
+        startX = e.touches[0].clientX;
+        isDragging = true;
+        stopAutoplay();
+      });
+      
+      track.addEventListener('touchmove', (e) => {
+        if (!isDragging) return;
+        currentX = e.touches[0].clientX;
+        const diff = startX - currentX;
+        
+        if (Math.abs(diff) > 50) {
+          if (diff > 0) {
+            nextSlide();
+          } else {
+            prevSlide();
+          }
+          isDragging = false;
+        }
+      });
+      
+      track.addEventListener('touchend', () => {
+        isDragging = false;
+        startAutoplay();
+      });
+    }
+    
+    // Pause autoplay on hover
+    if (track) {
+      track.addEventListener('mouseenter', stopAutoplay);
+      track.addEventListener('mouseleave', startAutoplay);
+    }
+    
+    // Window resize handler
+    window.addEventListener('resize', () => {
+      calculateLayout();
+      updateSlidePosition();
+    });
+    
+    // Initialize
+    calculateLayout();
+    createIndicators();
+    startAutoplay();
+  });
+</script>
+
+<style>
+  .testimonials-section {
+    padding: 8rem 0;
+    background: linear-gradient(135deg, #f8fafc 0%, #ffffff 50%, #f1f5f9 100%);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .testimonials-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 30% 20%, rgba(37, 99, 235, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 70% 80%, rgba(147, 51, 234, 0.05) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  /* Section Header */
+  .section-header {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 5rem;
+  }
+
+  .section-title {
+    font-size: 3rem;
+    font-weight: 800;
+    color: var(--color-dark);
+    margin-bottom: 1.5rem;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+  }
+
+  .section-subtitle {
+    font-size: 1.25rem;
+    color: var(--color-gray-600);
+    line-height: 1.6;
+    font-weight: 400;
+  }
+
+  /* Carousel Container */
+  .testimonials-carousel {
+    position: relative;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .carousel-container {
+    overflow: hidden;
+    margin-bottom: 3rem;
+    padding: 1rem 0;
+    border-radius: 12px;
+  }
+
+  .testimonials-track {
+    display: flex;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    gap: 2rem;
+    padding: 1rem;
+    min-height: 400px;
+  }
+
+  /* Testimonial Slides */
+  .testimonial-slide {
+    flex-shrink: 0;
+    display: block;
+  }
+
+  .testimonial-card {
+    background: white;
+    border-radius: 20px;
+    padding: 2.5rem;
+    min-height: 320px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(226, 232, 240, 0.8);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .testimonial-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--color-primary), var(--color-purple-primary));
+  }
+
+  .testimonial-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.12);
+  }
+
+  /* Card Header */
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+  }
+
+  .quote-icon {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-purple-primary));
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+  }
+
+  .quote-icon svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .rating {
+    font-size: 1rem;
+    letter-spacing: 2px;
+  }
+
+  /* Quote */
+  .testimonial-quote {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: var(--color-gray-700);
+    font-style: italic;
+    margin: 0 0 2rem 0;
+    flex-grow: 1;
+    font-weight: 400;
+  }
+
+  /* Author */
+  .testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-top: auto;
+  }
+
+  .author-avatar {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--color-gray-100), var(--color-gray-50));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.75rem;
+    border: 3px solid white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .author-info {
+    flex: 1;
+  }
+
+  .author-name {
+    margin: 0 0 0.25rem 0;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--color-dark);
+  }
+
+  .author-profession {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--color-gray-600);
+    font-weight: 500;
+  }
+
+  /* Navigation */
+  .carousel-navigation {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .carousel-btn {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: none;
+    background: white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: var(--color-gray-600);
+  }
+
+  .carousel-btn:hover {
+    background: var(--color-primary);
+    color: white;
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(37, 99, 235, 0.3);
+  }
+
+  .carousel-btn svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  /* Indicators */
+  .carousel-indicators {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: none;
+    background: var(--color-gray-300);
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .indicator.active {
+    background: var(--color-primary);
+    transform: scale(1.2);
+  }
+
+  /* Category Filter */
+  .category-filter {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .filter-btn {
+    padding: 0.75rem 1.5rem;
+    border: 2px solid var(--color-gray-200);
+    background: white;
+    border-radius: 25px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--color-gray-600);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .filter-btn:hover {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+    transform: translateY(-1px);
+  }
+
+  .filter-btn.active {
+    background: var(--color-primary);
+    border-color: var(--color-primary);
+    color: white;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+  }
+
+  /* Category-specific styling */
+  .benefits .testimonial-card::before {
+    background: linear-gradient(90deg, var(--color-primary), #1d4ed8);
+  }
+
+  .management .testimonial-card::before {
+    background: linear-gradient(90deg, var(--color-green-primary), #15803d);
+  }
+
+  .sales .testimonial-card::before {
+    background: linear-gradient(90deg, var(--color-purple-primary), #7c3aed);
+  }
+
+  .support .testimonial-card::before {
+    background: linear-gradient(90deg, #ea580c, #dc2626);
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .testimonials-section {
+      padding: 5rem 0;
+    }
+
+    .section-title {
+      font-size: 2.25rem;
+    }
+
+    .section-subtitle {
+      font-size: 1.1rem;
+    }
+
+    .testimonials-carousel {
+      padding: 0 1rem;
+    }
+
+    .testimonials-track {
+      gap: 1rem;
+      padding: 0.5rem;
+      min-height: 350px;
+    }
+
+    .testimonial-card {
+      padding: 2rem;
+      min-height: 300px;
+    }
+
+    .carousel-navigation {
+      gap: 1rem;
+    }
+
+    .category-filter {
+      gap: 0.5rem;
+    }
+
+    .filter-btn {
+      padding: 0.5rem 1rem;
+      font-size: 0.8rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .testimonials-carousel {
+      padding: 0 0.5rem;
+    }
+
+    .testimonials-track {
+      min-height: 380px;
+    }
+
+    .testimonial-card {
+      padding: 1.5rem;
+      min-height: 340px;
+    }
+
+    .testimonial-quote {
+      font-size: 1rem;
+    }
+
+    .author-avatar {
+      width: 48px;
+      height: 48px;
+      font-size: 1.5rem;
+    }
+  }
+</style> 

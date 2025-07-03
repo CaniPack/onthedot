@@ -1,0 +1,502 @@
+---
+import { getLangFromUrl, useTranslations } from '@/i18n/config';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<div id="waitlist-modal" class="modal-overlay">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2>{t('waitlist.title')}</h2>
+      <button class="close-btn" id="close-modal" aria-label="Close modal">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+    
+    <div class="modal-body">
+      <p class="modal-subtitle">{t('waitlist.subtitle')}</p>
+      
+      <form id="waitlist-form" class="waitlist-form">
+        <div class="form-group">
+          <label for="name">{t('waitlist.name')}</label>
+          <input 
+            type="text" 
+            id="name" 
+            name="name" 
+            required
+            placeholder={t('waitlist.name')}
+          />
+        </div>
+        
+        <div class="form-group">
+          <label for="email">{t('waitlist.email')}</label>
+          <input 
+            type="email" 
+            id="email" 
+            name="email" 
+            required
+            placeholder={t('waitlist.email')}
+          />
+        </div>
+        
+        <div class="form-group">
+          <label for="phone">{t('waitlist.phone')}</label>
+          <input 
+            type="tel" 
+            id="phone" 
+            name="phone" 
+            required
+            placeholder={t('waitlist.phone')}
+          />
+        </div>
+        
+        <!-- Simple Math CAPTCHA -->
+        <div class="form-group captcha-group">
+          <label for="captcha">
+            {lang === 'es' ? 'Verificación de seguridad: ' : 'Security verification: '}
+            <span id="math-question"></span>
+          </label>
+          <input 
+            type="number" 
+            id="captcha" 
+            name="captcha" 
+            required
+            placeholder={lang === 'es' ? 'Respuesta' : 'Answer'}
+          />
+        </div>
+        
+        <div class="form-actions">
+          <button type="button" class="btn-cancel" id="cancel-btn">
+            {t('waitlist.cancel')}
+          </button>
+          <button type="submit" class="btn-submit" id="submit-btn">
+            <span class="btn-text">{t('waitlist.submit')}</span>
+            <span class="btn-loader" style="display: none;">
+              <svg class="spinner" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" fill="none" opacity="0.25"></circle>
+                <path fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" opacity="0.75"></path>
+              </svg>
+            </span>
+          </button>
+        </div>
+      </form>
+      
+      <!-- Success Message -->
+      <div id="success-message" class="success-message" style="display: none;">
+        <div class="success-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="20,6 9,17 4,12"></polyline>
+          </svg>
+        </div>
+        <h3>{t('waitlist.success')}</h3>
+        <p>{lang === 'es' ? 'Te contactaremos pronto con más detalles.' : 'We\'ll contact you soon with more details.'}</p>
+      </div>
+      
+      <!-- Error Message -->
+      <div id="error-message" class="error-message" style="display: none;">
+        <div class="error-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="15" y1="9" x2="9" y2="15"></line>
+            <line x1="9" y1="9" x2="15" y2="15"></line>
+          </svg>
+        </div>
+        <h3>{t('waitlist.error')}</h3>
+        <p>{lang === 'es' ? 'Por favor verifica tu conexión e intenta nuevamente.' : 'Please check your connection and try again.'}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const modal = document.getElementById('waitlist-modal') as HTMLElement;
+    const closeBtn = document.getElementById('close-modal') as HTMLButtonElement;
+    const cancelBtn = document.getElementById('cancel-btn') as HTMLButtonElement;
+    const form = document.getElementById('waitlist-form') as HTMLFormElement;
+    const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement;
+    const btnText = submitBtn?.querySelector('.btn-text') as HTMLElement;
+    const btnLoader = submitBtn?.querySelector('.btn-loader') as HTMLElement;
+    const successMessage = document.getElementById('success-message') as HTMLElement;
+    const errorMessage = document.getElementById('error-message') as HTMLElement;
+    const mathQuestion = document.getElementById('math-question') as HTMLElement;
+    
+    let mathAnswer = 0;
+    
+    // Generate random math question
+    function generateMathQuestion() {
+      const a = Math.floor(Math.random() * 10) + 1;
+      const b = Math.floor(Math.random() * 10) + 1;
+      mathAnswer = a + b;
+      if (mathQuestion) {
+        mathQuestion.textContent = `${a} + ${b} = ?`;
+      }
+    }
+    
+    // Initialize math question
+    generateMathQuestion();
+    
+    // Global function to open modal
+    (window as any).openWaitlistModal = function() {
+      if (modal) {
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        generateMathQuestion(); // Generate new question each time
+      }
+    };
+    
+    // Close modal function
+    function closeModal() {
+      if (modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+        // Reset form and messages
+        if (form) form.reset();
+        if (successMessage) successMessage.style.display = 'none';
+        if (errorMessage) errorMessage.style.display = 'none';
+        if (form) form.style.display = 'block';
+        generateMathQuestion();
+      }
+    }
+    
+    // Event listeners
+    closeBtn?.addEventListener('click', closeModal);
+    cancelBtn?.addEventListener('click', closeModal);
+    
+    // Close modal when clicking outside
+    modal?.addEventListener('click', function(e) {
+      if (e.target === modal) {
+        closeModal();
+      }
+    });
+    
+    // Close modal with Escape key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && modal?.classList.contains('active')) {
+        closeModal();
+      }
+    });
+    
+    // Form submission
+    form?.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      
+      const formData = new FormData(form);
+      const captchaInput = formData.get('captcha') as string;
+      const captchaValue = parseInt(captchaInput || '0');
+      
+      // Validate captcha
+      if (captchaValue !== mathAnswer) {
+        alert(document.documentElement.lang === 'es' ? 
+          'Respuesta de verificación incorrecta. Intenta de nuevo.' : 
+          'Incorrect verification answer. Please try again.'
+        );
+        generateMathQuestion();
+        return;
+      }
+      
+      // Show loading state
+      if (submitBtn) submitBtn.disabled = true;
+      if (btnText) btnText.style.display = 'none';
+      if (btnLoader) btnLoader.style.display = 'inline-flex';
+      
+      try {
+        const response = await fetch('/api/waitlist', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            name: formData.get('name') as string,
+            email: formData.get('email') as string,
+            phone: formData.get('phone') as string,
+            language: document.documentElement.lang,
+            timestamp: new Date().toISOString()
+          })
+        });
+        
+        if (response.ok) {
+          // Show success message
+          if (form) form.style.display = 'none';
+          if (successMessage) successMessage.style.display = 'block';
+          
+          // Auto close after 3 seconds
+          setTimeout(() => {
+            closeModal();
+          }, 3000);
+        } else {
+          throw new Error('Server error');
+        }
+      } catch (error) {
+        console.error('Error submitting form:', error);
+        if (form) form.style.display = 'none';
+        if (errorMessage) errorMessage.style.display = 'block';
+      } finally {
+        // Reset loading state
+        if (submitBtn) submitBtn.disabled = false;
+        if (btnText) btnText.style.display = 'inline';
+        if (btnLoader) btnLoader.style.display = 'none';
+      }
+    });
+  });
+</script>
+
+<style>
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(8px);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    padding: 1rem;
+  }
+  
+  .modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  .modal-content {
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    max-width: 500px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    transform: scale(0.9) translateY(20px);
+    transition: transform 0.3s ease;
+  }
+  
+  .modal-overlay.active .modal-content {
+    transform: scale(1) translateY(0);
+  }
+  
+  .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 2rem 1rem;
+    border-bottom: 1px solid #f1f5f9;
+  }
+  
+  .modal-header h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-dark);
+  }
+  
+  .close-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 8px;
+    color: #64748b;
+    transition: all 0.3s ease;
+  }
+  
+  .close-btn:hover {
+    background: #f1f5f9;
+    color: var(--color-dark);
+  }
+  
+  .close-btn svg {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .modal-body {
+    padding: 1rem 2rem 2rem;
+  }
+  
+  .modal-subtitle {
+    color: #64748b;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+  }
+  
+  .waitlist-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .form-group label {
+    font-weight: 600;
+    color: var(--color-dark);
+    font-size: 0.875rem;
+  }
+  
+  .form-group input {
+    padding: 0.875rem 1rem;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background: #f8fafc;
+  }
+  
+  .form-group input:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    background: white;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+  }
+  
+  .captcha-group label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  #math-question {
+    font-weight: 700;
+    color: var(--color-primary);
+    background: #f0f9ff;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-family: monospace;
+  }
+  
+  .form-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+  
+  .btn-cancel,
+  .btn-submit {
+    flex: 1;
+    padding: 0.875rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+  
+  .btn-cancel {
+    background: #f1f5f9;
+    color: #64748b;
+  }
+  
+  .btn-cancel:hover {
+    background: #e2e8f0;
+    color: var(--color-dark);
+  }
+  
+  .btn-submit {
+    background: linear-gradient(135deg, var(--color-primary), #1d4ed8);
+    color: white;
+  }
+  
+  .btn-submit:hover:not(:disabled) {
+    background: linear-gradient(135deg, #1d4ed8, #1e40af);
+    transform: translateY(-1px);
+  }
+  
+  .btn-submit:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none;
+  }
+  
+  .spinner {
+    width: 20px;
+    height: 20px;
+    animation: spin 1s linear infinite;
+  }
+  
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  
+  .success-message,
+  .error-message {
+    text-align: center;
+    padding: 2rem;
+  }
+  
+  .success-icon,
+  .error-icon {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 1rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .success-icon {
+    background: #dcfce7;
+    color: #16a34a;
+  }
+  
+  .error-icon {
+    background: #fef2f2;
+    color: #dc2626;
+  }
+  
+  .success-icon svg,
+  .error-icon svg {
+    width: 32px;
+    height: 32px;
+  }
+  
+  .success-message h3,
+  .error-message h3 {
+    margin: 0 0 0.5rem;
+    color: var(--color-dark);
+  }
+  
+  .success-message p,
+  .error-message p {
+    margin: 0;
+    color: #64748b;
+  }
+  
+  /* Mobile responsiveness */
+  @media (max-width: 640px) {
+    .modal-overlay {
+      padding: 0.5rem;
+    }
+    
+    .modal-header,
+    .modal-body {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+    
+    .form-actions {
+      flex-direction: column;
+    }
+  }
+</style> 

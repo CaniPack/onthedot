@@ -1,0 +1,375 @@
+---
+import { getLangFromUrl, useTranslations } from '@/i18n/config';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+function getLocalizedPath(path: string) {
+  if (lang === 'es') {
+    return `/es${path}`;
+  }
+  return path;
+}
+
+// 3 Ventajas clave reales
+const keyBenefits = [
+  {
+    icon: '⭐',
+    title: lang === 'es' ? 'Servicio Premium' : 'Premium Service',
+    description: lang === 'es' 
+      ? 'Brinda una experiencia profesional que tus pacientes amarán y recomendarán'
+      : 'Provide a professional experience your patients will love and recommend'
+  },
+  {
+    icon: '⚡',
+    title: lang === 'es' ? 'Súper Fácil' : 'Super Easy',
+    description: lang === 'es'
+      ? 'Configúralo en 15 minutos y automatiza todo sin conocimientos técnicos'
+      : 'Set it up in 15 minutes and automate everything without technical knowledge'
+  },
+  {
+    icon: '💰',
+    title: lang === 'es' ? 'Más Ingresos' : 'More Income',
+    description: lang === 'es'
+      ? 'Reduce ausencias, optimiza horarios y acepta pagos online para crecer'
+      : 'Reduce no-shows, optimize schedules and accept online payments to grow'
+  }
+];
+---
+
+<section class="final-cta">
+  <div class="container">
+    <div class="cta-content">
+      <div class="cta-header">
+        <div class="cta-icon">🚀</div>
+        <h2>{t('cta-final.title')}</h2>
+        <p>{t('cta-final.subtitle')}</p>
+      </div>
+      
+      <!-- 3 Ventajas Clave -->
+      <div class="key-benefits">
+        {keyBenefits.map(benefit => (
+          <div class="benefit-card">
+            <div class="benefit-icon">{benefit.icon}</div>
+            <h3 class="benefit-title">{benefit.title}</h3>
+            <p class="benefit-description">{benefit.description}</p>
+          </div>
+        ))}
+      </div>
+      
+      <div class="cta-buttons">
+        <a href={getLocalizedPath('/contact')} class="btn btn-primary btn-large">
+          {t('home.cta.primary')}
+        </a>
+        <button type="button" class="btn btn-secondary btn-large" onclick="openWaitlistModal()">
+          {t('home.cta.secondary')}
+        </button>
+      </div>
+
+      <!-- Garantía de confianza -->
+      <div class="cta-guarantee">
+        <div class="guarantee-item">
+          <span class="guarantee-icon">✅</span>
+          <span class="guarantee-text">
+            {lang === 'es' ? 'Prueba gratuita 14 días' : '14-day free trial'}
+          </span>
+        </div>
+        <div class="guarantee-item">
+          <span class="guarantee-icon">🔒</span>
+          <span class="guarantee-text">
+            {lang === 'es' ? 'Datos 100% seguros' : '100% secure data'}
+          </span>
+        </div>
+        <div class="guarantee-item">
+          <span class="guarantee-icon">💬</span>
+          <span class="guarantee-text">
+            {lang === 'es' ? 'Soporte en español' : 'Spanish support'}
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .final-cta {
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-purple-primary) 100%);
+    color: white;
+    padding: 8rem 0;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .final-cta::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
+    pointer-events: none;
+  }
+  
+  .cta-content {
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  /* Header */
+  .cta-header {
+    margin-bottom: 4rem;
+  }
+  
+  .cta-icon {
+    font-size: 4rem;
+    margin-bottom: 2rem;
+    display: block;
+    animation: bounce 2s infinite;
+  }
+
+  @keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+      transform: translateY(0);
+    }
+    40% {
+      transform: translateY(-10px);
+    }
+    60% {
+      transform: translateY(-5px);
+    }
+  }
+  
+  .cta-content h2 {
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+  }
+  
+  .cta-content p {
+    font-size: 1.375rem;
+    margin-bottom: 0;
+    opacity: 0.95;
+    line-height: 1.6;
+    font-weight: 400;
+  }
+
+  /* Key Benefits */
+  .key-benefits {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-bottom: 4rem;
+    padding: 0 1rem;
+  }
+
+  .benefit-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    padding: 2.5rem 2rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .benefit-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border-radius: 20px;
+  }
+
+  .benefit-card:hover::before {
+    opacity: 1;
+  }
+
+  .benefit-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    border-color: rgba(255, 255, 255, 0.4);
+  }
+
+  .benefit-icon {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    display: block;
+    position: relative;
+    z-index: 1;
+  }
+
+  .benefit-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: white;
+    position: relative;
+    z-index: 1;
+  }
+
+  .benefit-description {
+    font-size: 1rem;
+    line-height: 1.6;
+    opacity: 0.9;
+    margin: 0;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* CTA Buttons */
+  .cta-buttons {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 4rem;
+  }
+  
+  .btn-large {
+    padding: 1.25rem 3rem;
+    font-size: 1.125rem;
+    min-height: 60px;
+    font-weight: 600;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-primary {
+    background: white;
+    color: var(--color-primary);
+    box-shadow: 0 8px 24px rgba(255, 255, 255, 0.2);
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px rgba(255, 255, 255, 0.3);
+    color: var(--color-primary);
+    text-decoration: none;
+  }
+
+  .btn-secondary {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(8px);
+  }
+
+  .btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.6);
+    transform: translateY(-2px);
+    color: white;
+    text-decoration: none;
+  }
+
+  /* Guarantee Section */
+  .cta-guarantee {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    flex-wrap: wrap;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .guarantee-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    opacity: 0.9;
+  }
+
+  .guarantee-icon {
+    font-size: 1.25rem;
+  }
+
+  .guarantee-text {
+    font-size: 0.9rem;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .final-cta {
+      padding: 5rem 0;
+    }
+
+    .cta-header {
+      margin-bottom: 3rem;
+    }
+
+    .key-benefits {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+
+    .benefit-card {
+      padding: 2rem 1.5rem;
+    }
+    
+    .cta-buttons {
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .btn-large {
+      width: 100%;
+      max-width: 300px;
+    }
+
+    .cta-guarantee {
+      gap: 1.5rem;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .guarantee-text {
+      white-space: normal;
+      text-align: center;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .cta-content {
+      padding: 0 1rem;
+    }
+
+    .key-benefits {
+      padding: 0;
+    }
+
+    .benefit-card {
+      padding: 1.5rem 1rem;
+    }
+
+    .guarantee-item {
+      flex-direction: column;
+      text-align: center;
+      gap: 0.5rem;
+    }
+  }
+</style> 

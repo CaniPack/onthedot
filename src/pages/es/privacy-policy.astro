@@ -1,0 +1,86 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+---
+
+<BaseLayout 
+  title="Política de Privacidad"
+  description="Conoce cómo Home Agenda recopila, utiliza y protege tu información personal."
+>
+  <Header />
+  <main>
+    <section class="section" id="main-content">
+      <div class="container">
+        <h1 class="text-center mb-8">Política de Privacidad</h1>
+        <div class="content">
+          <p><em>Última actualización: Enero 2024</em></p>
+          
+          <h2>Información que Recopilamos</h2>
+          <p>
+            Recopilamos información que nos proporcionas directamente, como cuando nos contactas a través 
+            de nuestro sitio web, te suscribes a nuestro boletín o utilizas nuestros servicios.
+          </p>
+          
+          <h2>Cómo Utilizamos tu Información</h2>
+          <p>
+            Utilizamos la información que recopilamos para proporcionar, mantener y mejorar nuestros servicios, 
+            comunicarnos contigo y cumplir con las obligaciones legales.
+          </p>
+          
+          <h2>Compartir Información</h2>
+          <p>
+            No vendemos, intercambiamos ni transferimos tu información personal a terceros 
+            sin tu consentimiento, excepto como se describe en esta política.
+          </p>
+          
+          <h2>Seguridad de Datos</h2>
+          <p>
+            Implementamos medidas técnicas y organizativas apropiadas para proteger tu información personal 
+            contra acceso no autorizado, alteración, divulgación o destrucción.
+          </p>
+          
+          <h2>Tus Derechos</h2>
+          <p>
+            Tienes derecho a acceder, actualizar o eliminar tu información personal. 
+            También puedes optar por no recibir ciertas comunicaciones nuestras.
+          </p>
+          
+          <h2>Contáctanos</h2>
+          <p>
+            Si tienes alguna pregunta sobre esta Política de Privacidad, contáctanos en 
+            <a href="mailto:privacy@homeagenda.com">privacy@homeagenda.com</a>.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>
+
+<style>
+  .content {
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+  
+  .content h2 {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    color: #1a1a1a;
+  }
+  
+  .content p {
+    margin-bottom: 1rem;
+  }
+  
+  .content a {
+    color: #3182ce;
+    text-decoration: none;
+  }
+  
+  .content a:hover {
+    text-decoration: underline;
+  }
+</style> 

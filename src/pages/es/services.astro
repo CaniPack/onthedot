@@ -1,0 +1,83 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+import { useTranslations } from '@/i18n/config';
+
+const t = useTranslations('es');
+---
+
+<BaseLayout 
+  title={t('services.title')}
+  description="Descubre nuestros servicios digitales integrales incluyendo desarrollo web, desarrollo de aplicaciones móviles y optimización SEO."
+>
+  <Header />
+  <main>
+    <section class="section" id="main-content">
+      <div class="container">
+        <h1 class="text-center mb-8">{t('services.title')}</h1>
+        <div class="grid grid-3">
+          <div class="card">
+            <h3>{t('services.web')}</h3>
+            <p>
+              Creamos sitios web modernos y responsivos utilizando tecnologías de vanguardia como Astro, React y TypeScript. Nuestros sitios web están optimizados para rendimiento, accesibilidad y SEO.
+            </p>
+            <ul>
+              <li>Desarrollo web personalizado</li>
+              <li>Soluciones de comercio electrónico</li>
+              <li>Integración de CMS</li>
+              <li>Optimización de rendimiento</li>
+            </ul>
+          </div>
+          
+          <div class="card">
+            <h3>{t('services.mobile')}</h3>
+            <p>
+              Desde aplicaciones nativas para iOS y Android hasta soluciones multiplataforma, desarrollamos aplicaciones móviles que brindan experiencias de usuario excepcionales y impulsan el crecimiento empresarial.
+            </p>
+            <ul>
+              <li>Desarrollo de apps nativas</li>
+              <li>Apps multiplataforma</li>
+              <li>Optimización para app stores</li>
+              <li>Mantenimiento y soporte</li>
+            </ul>
+          </div>
+          
+          <div class="card">
+            <h3>{t('services.seo')}</h3>
+            <p>
+              Nuestros expertos en SEO ayudan a mejorar tu visibilidad online a través de optimización técnica, estrategia de contenido y mejoras de rendimiento que impulsan tu posicionamiento en buscadores.
+            </p>
+            <ul>
+              <li>Auditoría técnica de SEO</li>
+              <li>Optimización de contenido</li>
+              <li>Mejora de rendimiento</li>
+              <li>Análisis e informes</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>
+
+<style>
+  .card ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 1rem;
+  }
+  
+  .card li {
+    padding: 0.25rem 0;
+    color: #4a5568;
+  }
+  
+  .card li::before {
+    content: "✓ ";
+    color: #3182ce;
+    font-weight: bold;
+    margin-right: 0.5rem;
+  }
+</style> 

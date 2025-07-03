@@ -1,0 +1,83 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+import { useTranslations } from '@/i18n/config';
+
+const t = useTranslations('en');
+---
+
+<BaseLayout 
+  title={t('services.title')}
+  description="Discover our comprehensive digital services including web development, mobile app development, and SEO optimization."
+>
+  <Header />
+  <main>
+    <section class="section" id="main-content">
+      <div class="container">
+        <h1 class="text-center mb-8">{t('services.title')}</h1>
+        <div class="grid grid-3">
+          <div class="card">
+            <h3>{t('services.web')}</h3>
+            <p>
+              We create modern, responsive websites using cutting-edge technologies like Astro, React, and TypeScript. Our websites are optimized for performance, accessibility, and SEO.
+            </p>
+            <ul>
+              <li>Custom web development</li>
+              <li>E-commerce solutions</li>
+              <li>CMS integration</li>
+              <li>Performance optimization</li>
+            </ul>
+          </div>
+          
+          <div class="card">
+            <h3>{t('services.mobile')}</h3>
+            <p>
+              From native iOS and Android apps to cross-platform solutions, we develop mobile applications that provide exceptional user experiences and drive business growth.
+            </p>
+            <ul>
+              <li>Native app development</li>
+              <li>Cross-platform apps</li>
+              <li>App store optimization</li>
+              <li>Maintenance & support</li>
+            </ul>
+          </div>
+          
+          <div class="card">
+            <h3>{t('services.seo')}</h3>
+            <p>
+              Our SEO experts help improve your online visibility through technical optimization, content strategy, and performance enhancements that boost your search rankings.
+            </p>
+            <ul>
+              <li>Technical SEO audit</li>
+              <li>Content optimization</li>
+              <li>Performance improvement</li>
+              <li>Analytics & reporting</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>
+
+<style>
+  .card ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 1rem;
+  }
+  
+  .card li {
+    padding: 0.25rem 0;
+    color: #4a5568;
+  }
+  
+  .card li::before {
+    content: "✓ ";
+    color: #3182ce;
+    font-weight: bold;
+    margin-right: 0.5rem;
+  }
+</style> 

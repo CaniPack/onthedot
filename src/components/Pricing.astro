@@ -1,0 +1,627 @@
+---
+import { getLangFromUrl, useTranslations } from '@/i18n/config';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const plans = [
+  {
+    name: t('pricing.professional'),
+    price: lang === 'es' ? '$29' : '$29',
+    period: lang === 'es' ? 'por usuario / mes' : 'per user / month',
+    description: t('pricing.professional.desc'),
+    features: [
+      lang === 'es' ? 'Citas ilimitadas' : 'Unlimited appointments',
+      lang === 'es' ? 'Branding personalizado' : 'Custom branding',
+      lang === 'es' ? 'Integración Google Calendar' : 'Google Calendar integration',
+      lang === 'es' ? 'Recordatorios SMS y Email' : 'SMS and Email reminders',
+      lang === 'es' ? 'Página de agendamiento profesional' : 'Professional booking page',
+      lang === 'es' ? 'Soporte prioritario' : 'Priority support',
+      lang === 'es' ? 'Reportes básicos' : 'Basic reports'
+    ],
+    recommended: true,
+    buttonText: lang === 'es' ? 'Prueba gratuita de 14 días' : 'Free 14-day trial',
+    color: 'blue'
+  },
+  {
+    name: t('pricing.premium'),
+    price: lang === 'es' ? '$59' : '$59',
+    period: lang === 'es' ? 'por usuario / mes' : 'per user / month',
+    description: t('pricing.premium.desc'),
+    baseFeatures: lang === 'es' ? 'Todo lo de Professional y más:' : 'Everything in Professional plus:',
+    features: [
+      lang === 'es' ? 'Pagos online integrados' : 'Integrated online payments',
+      lang === 'es' ? 'Recordatorios WhatsApp' : 'WhatsApp reminders',
+      lang === 'es' ? 'Formularios personalizados' : 'Custom intake forms',
+      lang === 'es' ? 'Reportes avanzados y analytics' : 'Advanced reports & analytics',
+      lang === 'es' ? 'Automatizaciones avanzadas' : 'Advanced automations',
+      lang === 'es' ? 'Integración con Zoom/Teams' : 'Zoom/Teams integration'
+    ],
+    recommended: false,
+    buttonText: lang === 'es' ? 'Prueba gratuita de 14 días' : 'Free 14-day trial',
+    color: 'green'
+  },
+  {
+    name: t('pricing.enterprise'),
+    price: lang === 'es' ? '$99' : '$99',
+    period: lang === 'es' ? 'por usuario / mes' : 'per user / month',
+    description: t('pricing.enterprise.desc'),
+    baseFeatures: lang === 'es' ? 'Todo lo de Premium y más:' : 'Everything in Premium plus:',
+    features: [
+      lang === 'es' ? 'Multiusuario avanzado' : 'Advanced multi-user',
+      lang === 'es' ? 'API completa y webhooks' : 'Full API & webhooks',
+      lang === 'es' ? 'Integraciones personalizadas' : 'Custom integrations',
+      lang === 'es' ? 'Soporte dedicado 24/7' : 'Dedicated 24/7 support',
+      lang === 'es' ? 'Onboarding personalizado' : 'Custom onboarding',
+      lang === 'es' ? 'SLA garantizado' : 'Guaranteed SLA'
+    ],
+    recommended: false,
+    buttonText: lang === 'es' ? 'Contactar ventas' : 'Contact sales',
+    color: 'purple'
+  }
+];
+---
+
+<section class="section" id="pricing">
+  <div class="container">
+    <h2>{t('pricing.title')}</h2>
+    
+    <div class="pricing-grid">
+      {plans.map(plan => (
+        <div class={`pricing-card ${plan.recommended ? 'recommended' : ''} ${plan.color}`}>
+          {plan.recommended && (
+            <div class="recommended-badge">
+              {lang === 'es' ? 'Recomendado' : 'Recommended'}
+            </div>
+          )}
+          
+          <div class="plan-header">
+            <h3>{plan.name}</h3>
+            <div class="plan-price">
+              <span class="currency">{plan.price}</span>
+            </div>
+            <div class="plan-period">{plan.period}</div>
+            <div class="plan-description">{plan.description}</div>
+          </div>
+
+          <div class="features-section">
+            {plan.baseFeatures && (
+              <div class="base-features">{plan.baseFeatures}</div>
+            )}
+            <ul class="features-list">
+              {plan.features.map(feature => (
+                <li>{feature}</li>
+              ))}
+            </ul>
+          </div>
+
+          <div class="card-footer">
+            <a href="#" class={`cta-button ${plan.color}`}>
+              {plan.buttonText}
+            </a>
+            <div class="no-credit-card">
+              {lang === 'es' ? 'No se requiere tarjeta de crédito' : 'No credit card required'}
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Compare All Features Button -->
+    <div class="compare-features">
+      <a href="#compare" class="compare-button">
+        {lang === 'es' ? 'Comparar todas las características' : 'Compare all features'}
+      </a>
+    </div>
+
+    <!-- Plan Gratuito Link -->
+    <div class="free-plan-link">
+      <p>
+        {lang === 'es' ? '¿Apenas empiezas? ' : 'Just getting started? '}
+        <a href="/free-plan" class="free-link">
+          {lang === 'es' ? 'Prueba nuestro plan gratuito' : 'Try our free plan'}
+        </a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .section {
+    padding: 6rem 0;
+    background: #f8fafc;
+  }
+
+  .section h2 {
+    text-align: center;
+    color: #1e293b;
+    margin-bottom: 4rem;
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  /* Pricing Grid - Mobile First */
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin: 0 auto;
+  }
+
+  .pricing-card {
+    background: white;
+    border-radius: 20px;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+    border: 2px solid #e2e8f0;
+    transition: all 0.3s ease;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    min-height: 550px;
+  }
+
+  .pricing-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.12);
+  }
+
+  .pricing-card.blue {
+    border-color: #dbeafe;
+  }
+
+  .pricing-card.blue:hover {
+    border-color: #2563eb;
+    box-shadow: 0 16px 48px rgba(37, 99, 235, 0.15);
+  }
+
+  .pricing-card.green {
+    border-color: #dcfce7;
+  }
+
+  .pricing-card.green:hover {
+    border-color: #16a34a;
+    box-shadow: 0 16px 48px rgba(22, 163, 74, 0.15);
+  }
+
+  .pricing-card.purple {
+    border-color: #f3e8ff;
+  }
+
+  .pricing-card.purple:hover {
+    border-color: #9333ea;
+    box-shadow: 0 16px 48px rgba(147, 51, 234, 0.15);
+  }
+
+  .pricing-card.recommended {
+    transform: translateY(-8px);
+    border-width: 3px;
+    box-shadow: 0 16px 48px rgba(37, 99, 235, 0.12);
+  }
+
+  .pricing-card.recommended:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 24px 60px rgba(37, 99, 235, 0.18);
+  }
+
+  .recommended-badge {
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    color: white;
+    padding: 0.6rem 2rem;
+    border-radius: 25px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
+    z-index: 10;
+  }
+
+  .plan-header {
+    margin-bottom: 2.5rem;
+    padding-bottom: 2rem;
+    border-bottom: 2px solid #f1f5f9;
+  }
+
+  .plan-header h3 {
+    color: #1e293b;
+    font-size: 1.6rem;
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+  }
+
+  .plan-price {
+    margin-bottom: 0.75rem;
+  }
+
+  .currency {
+    font-size: 3.5rem;
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+
+  .pricing-card.blue .currency {
+    color: #2563eb;
+  }
+
+  .pricing-card.green .currency {
+    color: #16a34a;
+  }
+
+  .pricing-card.purple .currency {
+    color: #9333ea;
+  }
+
+  .plan-period {
+    color: #64748b;
+    font-size: 1rem;
+    margin-bottom: 1.25rem;
+    font-weight: 500;
+  }
+
+  .plan-description {
+    color: #64748b;
+    font-size: 1rem;
+    line-height: 1.6;
+    max-width: 280px;
+    margin: 0 auto;
+  }
+
+  .features-section {
+    flex-grow: 1;
+    text-align: left;
+    margin-bottom: 2.5rem;
+  }
+
+  .base-features {
+    color: #374151;
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    padding: 1rem 1.25rem;
+    background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+    border-radius: 12px;
+    border-left: 4px solid;
+  }
+
+  .pricing-card.green .base-features {
+    border-left-color: #16a34a;
+  }
+
+  .pricing-card.purple .base-features {
+    border-left-color: #9333ea;
+  }
+
+  .features-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .features-list li {
+    color: #475569;
+    font-size: 1rem;
+    line-height: 1.8;
+    padding: 0.75rem 0;
+    padding-left: 2rem;
+    position: relative;
+    border-bottom: 1px solid #f8fafc;
+  }
+
+  .features-list li:last-child {
+    border-bottom: none;
+  }
+
+  .features-list li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    font-weight: 700;
+    font-size: 1.1rem;
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: white;
+    border: 2px solid;
+  }
+
+  .pricing-card.blue .features-list li::before {
+    color: #2563eb;
+    border-color: #2563eb;
+  }
+
+  .pricing-card.green .features-list li::before {
+    color: #16a34a;
+    border-color: #16a34a;
+  }
+
+  .pricing-card.purple .features-list li::before {
+    color: #9333ea;
+    border-color: #9333ea;
+  }
+
+  .card-footer {
+    margin-top: auto;
+  }
+
+  .cta-button {
+    width: 100%;
+    padding: 1.25rem 2.5rem;
+    border-radius: 15px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: 3px solid;
+    display: block;
+    text-align: center;
+    cursor: pointer;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .cta-button.blue {
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    color: white;
+    border-color: #2563eb;
+  }
+
+  .cta-button.blue:hover {
+    background: linear-gradient(135deg, #1d4ed8, #1e40af);
+    border-color: #1d4ed8;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(37, 99, 235, 0.4);
+  }
+
+  .cta-button.green {
+    background: linear-gradient(135deg, #16a34a, #15803d);
+    color: white;
+    border-color: #16a34a;
+  }
+
+  .cta-button.green:hover {
+    background: linear-gradient(135deg, #15803d, #166534);
+    border-color: #15803d;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(22, 163, 74, 0.4);
+  }
+
+  .cta-button.purple {
+    background: linear-gradient(135deg, #9333ea, #7c3aed);
+    color: white;
+    border-color: #9333ea;
+  }
+
+  .cta-button.purple:hover {
+    background: linear-gradient(135deg, #7c3aed, #6d28d9);
+    border-color: #7c3aed;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(147, 51, 234, 0.4);
+  }
+
+  .no-credit-card {
+    color: #64748b;
+    font-size: 0.85rem;
+    font-style: italic;
+    font-weight: 500;
+  }
+
+  .compare-features {
+    text-align: center;
+    margin-top: 4rem;
+  }
+
+  .compare-button {
+    display: inline-block;
+    padding: 1.25rem 3rem;
+    background: linear-gradient(135deg, #ea580c, #dc2626);
+    color: white;
+    border: none;
+    border-radius: 15px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 8px 25px rgba(234, 88, 12, 0.3);
+  }
+
+  .compare-button:hover {
+    background: linear-gradient(135deg, #dc2626, #b91c1c);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 35px rgba(234, 88, 12, 0.4);
+  }
+
+  .free-plan-link {
+    text-align: center;
+    margin-top: 3rem;
+    padding-top: 2.5rem;
+    border-top: 2px solid #e2e8f0;
+  }
+
+  .free-plan-link p {
+    color: #64748b;
+    font-size: 1.1rem;
+    margin: 0;
+    font-weight: 500;
+  }
+
+  .free-link {
+    color: #2563eb;
+    text-decoration: none;
+    font-weight: 700;
+    border-bottom: 2px solid transparent;
+    transition: all 0.3s ease;
+    padding-bottom: 2px;
+  }
+
+  .free-link:hover {
+    color: #1d4ed8;
+    border-bottom-color: #1d4ed8;
+  }
+
+  /* Tablet Styles (768px and up) */
+  @media (min-width: 768px) {
+    .container {
+      max-width: 1400px;
+      padding: 0 2rem;
+    }
+
+    .pricing-grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2.5rem;
+    }
+
+    .pricing-card {
+      padding: 3rem 2.5rem;
+      min-height: 650px;
+    }
+
+    .plan-header h3 {
+      font-size: 1.8rem;
+    }
+
+    .currency {
+      font-size: 4rem;
+    }
+
+    .plan-period {
+      font-size: 1.1rem;
+    }
+
+    .plan-description {
+      font-size: 1.1rem;
+      max-width: 320px;
+    }
+
+    .base-features {
+      font-size: 1rem;
+      padding: 1.25rem 1.5rem;
+    }
+
+    .features-list li {
+      font-size: 1.1rem;
+      padding: 1rem 0;
+      padding-left: 2.5rem;
+    }
+
+    .cta-button {
+      font-size: 1.2rem;
+      padding: 1.5rem 3rem;
+    }
+  }
+
+  /* Desktop Styles (1024px and up) */
+  @media (min-width: 1024px) {
+    .container {
+      max-width: 1600px;
+      padding: 0 3rem;
+    }
+
+    .pricing-grid {
+      gap: 3rem;
+    }
+
+    .pricing-card {
+      padding: 4rem 3rem;
+      min-height: 700px;
+    }
+
+    .plan-header {
+      margin-bottom: 3rem;
+      padding-bottom: 2.5rem;
+    }
+
+    .plan-header h3 {
+      font-size: 2rem;
+      margin-bottom: 1.75rem;
+    }
+
+    .currency {
+      font-size: 4.5rem;
+    }
+
+    .plan-period {
+      font-size: 1.2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .plan-description {
+      font-size: 1.2rem;
+      max-width: 360px;
+    }
+
+    .features-section {
+      margin-bottom: 3rem;
+    }
+
+    .base-features {
+      font-size: 1.1rem;
+      padding: 1.5rem 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .features-list li {
+      font-size: 1.2rem;
+      padding: 1.25rem 0;
+      padding-left: 3rem;
+    }
+
+    .features-list li::before {
+      width: 2rem;
+      height: 2rem;
+      font-size: 1.2rem;
+    }
+
+    .cta-button {
+      font-size: 1.3rem;
+      padding: 1.75rem 3.5rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .no-credit-card {
+      font-size: 0.95rem;
+    }
+  }
+
+  /* Large Desktop (1440px and up) */
+  @media (min-width: 1440px) {
+    .container {
+      max-width: 1800px;
+      padding: 0 4rem;
+    }
+
+    .pricing-grid {
+      gap: 4rem;
+    }
+
+    .pricing-card {
+      padding: 5rem 4rem;
+      min-height: 750px;
+    }
+
+    .currency {
+      font-size: 5rem;
+    }
+  }
+</style> 

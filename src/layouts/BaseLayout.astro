@@ -1,0 +1,222 @@
+---
+import { getLangFromUrl, useTranslations } from '@/i18n/config';
+
+export interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  canonicalURL?: string;
+}
+
+const { title, description, image, canonicalURL } = Astro.props;
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const siteTitle = title ? `${title} | Home Agenda` : t('meta.title');
+const siteDescription = description || t('meta.description');
+const siteImage = image ? new URL(image, Astro.url).href : new URL('/image/og-image.jpg', Astro.url).href;
+const siteURL = canonicalURL || new URL(Astro.url.pathname, Astro.site).href;
+---
+
+<!DOCTYPE html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={siteDescription} />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/image/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    
+    <!-- SEO Meta Tags -->
+    <title>{siteTitle}</title>
+    <meta name="description" content={siteDescription} />
+    <link rel="canonical" href={siteURL} />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={siteURL} />
+    <meta property="og:title" content={siteTitle} />
+    <meta property="og:description" content={siteDescription} />
+    <meta property="og:image" content={siteImage} />
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={siteURL} />
+    <meta property="twitter:title" content={siteTitle} />
+    <meta property="twitter:description" content={siteDescription} />
+    <meta property="twitter:image" content={siteImage} />
+    
+    <!-- Alternate languages -->
+    <link rel="alternate" hreflang="en" href={new URL(Astro.url.pathname.replace('/es', ''), Astro.site).href} />
+    <link rel="alternate" hreflang="es" href={new URL(`/es${Astro.url.pathname}`, Astro.site).href} />
+    <link rel="alternate" hreflang="x-default" href={new URL(Astro.url.pathname.replace('/es', ''), Astro.site).href} />
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="/src/styles/global.css" />
+    
+    <!-- Google Analytics -->
+    <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-BC1F74GGLJ"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-BC1F74GGLJ');
+    </script>
+  </head>
+  <body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <slot />
+    
+    <!-- Language Detection and Auto-redirect Script -->
+    <script is:inline>
+      (function() {
+        // Configuration
+        const SUPPORTED_LANGUAGES = ['en', 'es'];
+        const DEFAULT_LANGUAGE = 'en';
+        const PREFERENCE_KEY = 'onthedot_lang_preference';
+        
+        // Get current language from URL
+        function getCurrentLanguage() {
+          const pathParts = window.location.pathname.split('/');
+          const langFromUrl = pathParts[1];
+          return SUPPORTED_LANGUAGES.includes(langFromUrl) ? langFromUrl : DEFAULT_LANGUAGE;
+        }
+        
+        // Get browser's preferred language
+        function getBrowserLanguage() {
+          const browserLang = navigator.language || navigator.languages?.[0] || DEFAULT_LANGUAGE;
+          const langCode = browserLang.split('-')[0].toLowerCase();
+          return SUPPORTED_LANGUAGES.includes(langCode) ? langCode : DEFAULT_LANGUAGE;
+        }
+        
+        // Get user's saved preference
+        function getSavedPreference() {
+          try {
+            return localStorage.getItem(PREFERENCE_KEY);
+          } catch (e) {
+            return null;
+          }
+        }
+        
+        // Save user's preference
+        function savePreference(lang) {
+          try {
+            localStorage.setItem(PREFERENCE_KEY, lang);
+          } catch (e) {
+            // Silently fail if localStorage is not available
+          }
+        }
+        
+        // Check if we should redirect
+        function shouldRedirect() {
+          // Don't redirect if we're in the middle of navigation (back/forward)
+          if (performance.getEntriesByType('navigation')[0]?.type === 'back_forward') {
+            return false;
+          }
+          
+          // Don't redirect if this is a manual language selection
+          if (window.location.search.includes('lang_selected=true')) {
+            return false;
+          }
+          
+          return true;
+        }
+        
+        // Build URL for target language
+        function buildLanguageUrl(targetLang) {
+          const currentPath = window.location.pathname;
+          const currentLang = getCurrentLanguage();
+          
+          if (targetLang === DEFAULT_LANGUAGE) {
+            // Remove language prefix for default language
+            if (currentLang === 'es') {
+              return currentPath.replace(/^\/es/, '') || '/';
+            }
+            return currentPath;
+          } else {
+            // Add language prefix for non-default language
+            if (currentLang === DEFAULT_LANGUAGE) {
+              return `/es${currentPath}`;
+            }
+            return currentPath.replace(/^\/[a-z]{2}/, `/es`);
+          }
+        }
+        
+        // Main logic
+        function handleLanguageDetection() {
+          if (!shouldRedirect()) return;
+          
+          const currentLang = getCurrentLanguage();
+          const browserLang = getBrowserLanguage();
+          const savedPreference = getSavedPreference();
+          
+          // If user has a saved preference, respect it
+          if (savedPreference) {
+            if (savedPreference !== currentLang) {
+              const targetUrl = buildLanguageUrl(savedPreference);
+              if (targetUrl !== window.location.pathname) {
+                window.location.replace(targetUrl);
+                return;
+              }
+            }
+            return;
+          }
+          
+          // No saved preference - use browser language for first visit
+          if (browserLang !== currentLang) {
+            const targetUrl = buildLanguageUrl(browserLang);
+            if (targetUrl !== window.location.pathname) {
+              // Save the detected language as preference
+              savePreference(browserLang);
+              window.location.replace(targetUrl);
+              return;
+            }
+          }
+          
+          // Save current language as preference for future visits
+          savePreference(currentLang);
+        }
+        
+        // Listen for manual language selection
+        function setupLanguageSelectionHandler() {
+          document.addEventListener('click', function(e) {
+            const langLink = e.target.closest('[data-lang-switch]');
+            if (langLink) {
+              const targetLang = langLink.getAttribute('data-lang-switch');
+              if (SUPPORTED_LANGUAGES.includes(targetLang)) {
+                savePreference(targetLang);
+                // Add parameter to prevent auto-redirect
+                const url = new URL(langLink.href);
+                url.searchParams.set('lang_selected', 'true');
+                langLink.href = url.toString();
+              }
+            }
+          });
+        }
+        
+        // Clean URL parameters after page load
+        function cleanUrlParameters() {
+          if (window.location.search.includes('lang_selected=true')) {
+            const url = new URL(window.location);
+            url.searchParams.delete('lang_selected');
+            window.history.replaceState({}, '', url.toString());
+          }
+        }
+        
+        // Initialize when DOM is ready
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', function() {
+            handleLanguageDetection();
+            setupLanguageSelectionHandler();
+            cleanUrlParameters();
+          });
+        } else {
+          handleLanguageDetection();
+          setupLanguageSelectionHandler();
+          cleanUrlParameters();
+        }
+      })();
+    </script>
+  </body>
+</html> 

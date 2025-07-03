@@ -1,0 +1,47 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+import { useTranslations } from '@/i18n/config';
+
+const t = useTranslations('en');
+---
+
+<BaseLayout 
+  title={t('about.title')}
+  description={t('about.description')}
+>
+  <Header />
+  <main>
+    <section class="section" id="main-content">
+      <div class="container">
+        <h1 class="text-center mb-8">{t('about.title')}</h1>
+        <div class="content">
+          <p>
+            {t('about.description')}
+          </p>
+          <p>
+            We combine creativity with technical expertise to deliver solutions that not only look great but also perform exceptionally. Our team is passionate about staying up-to-date with the latest technologies and best practices in web development, mobile app development, and digital marketing.
+          </p>
+          <p>
+            Whether you're a startup looking to establish your online presence or an established business seeking to modernize your digital infrastructure, we're here to help you achieve your goals.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>
+
+<style>
+  .content {
+    max-width: 800px;
+    margin: 0 auto;
+    font-size: 1.125rem;
+    line-height: 1.7;
+  }
+  
+  .content p {
+    margin-bottom: 1.5rem;
+  }
+</style> 

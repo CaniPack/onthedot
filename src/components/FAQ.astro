@@ -1,0 +1,818 @@
+---
+import { getLangFromUrl, useTranslations } from '@/i18n/config';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+// FAQs categorizadas y optimizadas para SEO
+const faqCategories = [
+  {
+    category: lang === 'es' ? 'Funcionalidades Básicas' : 'Basic Features',
+    icon: '⚡',
+    faqs: [
+      {
+        question: lang === 'es' 
+          ? '¿Qué es una app de agendamiento online y cómo funciona?'
+          : 'What is an online scheduling app and how does it work?',
+        answer: lang === 'es'
+          ? 'Una app de agendamiento online es una plataforma digital que permite a profesionales de la salud gestionar citas automáticamente. Los pacientes pueden reservar, modificar o cancelar citas 24/7 desde cualquier dispositivo, mientras que el profesional tiene control total sobre horarios, servicios y disponibilidad. OntheDot sincroniza todo con Google Calendar y WhatsApp para máxima eficiencia.'
+          : 'An online scheduling app is a digital platform that allows healthcare professionals to manage appointments automatically. Patients can book, modify or cancel appointments 24/7 from any device, while the professional has full control over schedules, services and availability. OntheDot syncs everything with Google Calendar and WhatsApp for maximum efficiency.'
+      },
+      {
+        question: lang === 'es'
+          ? '¿Puedo personalizar completamente mi página de citas online?'
+          : 'Can I fully customize my online appointment page?',
+        answer: lang === 'es'
+          ? 'Sí, absolutamente! Puedes personalizar colores, logo, textos, servicios, horarios, precios y hasta el dominio. Tu página reflejará 100% tu marca profesional. Incluimos plantillas prediseñadas para diferentes especialidades médicas y también puedes crear tu diseño desde cero.'
+          : 'Yes, absolutely! You can customize colors, logo, texts, services, schedules, prices and even the domain. Your page will 100% reflect your professional brand. We include pre-designed templates for different medical specialties and you can also create your design from scratch.'
+      },
+      {
+        question: lang === 'es'
+          ? '¿Cómo se integra con Google Calendar y qué beneficios tiene?'
+          : 'How does it integrate with Google Calendar and what benefits does it have?',
+        answer: lang === 'es'
+          ? 'La integración es automática y bidireccional. Todas las citas se sincronizan en tiempo real con tu Google Calendar existente. Si bloqueas tiempo en Google Calendar, esas horas no estarán disponibles para reserva. También puedes gestionar citas desde Google Calendar y se actualizarán automáticamente en tu página de reservas.'
+          : 'Integration is automatic and bidirectional. All appointments sync in real-time with your existing Google Calendar. If you block time in Google Calendar, those hours won\'t be available for booking. You can also manage appointments from Google Calendar and they\'ll automatically update on your booking page.'
+      },
+      {
+        question: lang === 'es'
+          ? '¿Acepta pagos online y qué métodos de pago incluye?'
+          : 'Does it accept online payments and what payment methods are included?',
+        answer: lang === 'es'
+          ? 'Sí, procesamos pagos seguros con Stripe y PayPal. Aceptamos tarjetas de crédito/débito, transferencias bancarias, PSE y pagos móviles. Puedes configurar pagos completos, parciales o señas. También manejas pagos presenciales y tienes reportes financieros detallados.'
+          : 'Yes, we process secure payments with Stripe and PayPal. We accept credit/debit cards, bank transfers, PSE and mobile payments. You can set up full payments, partial payments or deposits. You also handle in-person payments and have detailed financial reports.'
+      }
+    ]
+  },
+  {
+    category: lang === 'es' ? 'Gestión y Automatización' : 'Management & Automation',
+    icon: '🤖',
+    faqs: [
+      {
+        question: lang === 'es'
+          ? '¿Cómo mis pacientes agendan sus citas paso a paso?'
+          : 'How do my patients schedule their appointments step by step?',
+        answer: lang === 'es'
+          ? 'Es súper simple: 1) Ingresan a tu página personalizada, 2) Seleccionan el servicio que necesitan, 3) Escogen fecha y hora disponible, 4) Completan sus datos básicos, 5) Confirman la cita y opcionalmente pagan online. Reciben confirmación inmediata por email y WhatsApp con todos los detalles.'
+          : 'It\'s super simple: 1) They enter your personalized page, 2) Select the service they need, 3) Choose available date and time, 4) Complete their basic information, 5) Confirm the appointment and optionally pay online. They receive immediate confirmation by email and WhatsApp with all details.'
+      },
+      {
+        question: lang === 'es'
+          ? '¿Qué tipo de recordatorios automáticos se envían?'
+          : 'What type of automatic reminders are sent?',
+        answer: lang === 'es'
+          ? 'Enviamos recordatorios personalizables por WhatsApp y email: 1 semana antes, 24 horas antes, y 2 horas antes de la cita. Los mensajes incluyen fecha, hora, dirección, instrucciones especiales y enlace para reprogramar o cancelar. Puedes personalizar completamente los textos y horarios.'
+          : 'We send customizable reminders via WhatsApp and email: 1 week before, 24 hours before, and 2 hours before the appointment. Messages include date, time, address, special instructions and link to reschedule or cancel. You can fully customize texts and schedules.'
+      },
+      {
+        question: lang === 'es'
+          ? '¿Puedo gestionar múltiples profesionales y sucursales?'
+          : 'Can I manage multiple professionals and locations?',
+        answer: lang === 'es'
+          ? 'Absolutamente. Puedes añadir ilimitados profesionales con horarios independientes, especialidades diferentes y tarifas personalizadas. También gestionas múltiples ubicaciones con direcciones específicas. Cada profesional tiene su dashboard personalizado y los reportes se pueden filtrar por profesional o sucursal.'
+          : 'Absolutely. You can add unlimited professionals with independent schedules, different specialties and custom rates. You also manage multiple locations with specific addresses. Each professional has their personalized dashboard and reports can be filtered by professional or location.'
+      },
+      {
+        question: lang === 'es'
+          ? '¿Cómo funciona la gestión de listas de espera?'
+          : 'How does waitlist management work?',
+        answer: lang === 'es'
+          ? 'Cuando no hay disponibilidad, los pacientes se pueden añadir automáticamente a lista de espera. Si se libera un cupo (cancelación/reprogramación), el sistema notifica automáticamente a las personas en lista según orden de llegada. Tienen tiempo limitado para confirmar antes que se ofrezca al siguiente.'
+          : 'When there\'s no availability, patients can automatically be added to a waitlist. If a slot opens up (cancellation/rescheduling), the system automatically notifies people on the list in order of arrival. They have limited time to confirm before it\'s offered to the next person.'
+      }
+    ]
+  },
+  {
+    category: lang === 'es' ? 'Planes y Precios' : 'Plans & Pricing',
+    icon: '💰',
+    faqs: [
+      {
+        question: lang === 'es'
+          ? '¿Cuáles son los planes disponibles y sus diferencias?'
+          : 'What are the available plans and their differences?',
+        answer: lang === 'es'
+          ? 'Ofrecemos 3 planes: Profesional ($29/mes) - 1 profesional, 500 citas/mes, WhatsApp básico. Premium ($59/mes) - 3 profesionales, 1500 citas/mes, integración completa, reportes avanzados. Enterprise ($99/mes) - profesionales ilimitados, citas ilimitadas, white-label, soporte prioritario 24/7.'
+          : 'We offer 3 plans: Professional ($29/month) - 1 professional, 500 appointments/month, basic WhatsApp. Premium ($59/month) - 3 professionals, 1500 appointments/month, full integration, advanced reports. Enterprise ($99/month) - unlimited professionals, unlimited appointments, white-label, 24/7 priority support.'
+      },
+      {
+        question: lang === 'es'
+          ? '¿Hay periodo de prueba gratuito y qué incluye?'
+          : 'Is there a free trial period and what does it include?',
+        answer: lang === 'es'
+          ? 'Sí, ofrecemos 14 días de prueba gratuita con acceso completo a todas las funcionalidades del plan Premium. No se requiere tarjeta de crédito para empezar. Puedes configurar todo tu sistema, probar integraciones y evaluar cómo funciona con tus pacientes reales antes de decidir.'
+          : 'Yes, we offer a 14-day free trial with full access to all Premium plan features. No credit card required to start. You can set up your entire system, test integrations and evaluate how it works with your real patients before deciding.'
+      },
+      {
+        question: lang === 'es'
+          ? '¿Se puede cancelar en cualquier momento sin penalizaciones?'
+          : 'Can I cancel anytime without penalties?',
+        answer: lang === 'es'
+          ? 'Absolutamente. No hay contratos de permanencia ni penalizaciones por cancelación. Puedes pausar o cancelar tu suscripción cuando quieras desde tu panel de control. Al cancelar, mantienes acceso hasta el final del periodo pagado y puedes exportar todos tus datos.'
+          : 'Absolutely. There are no permanency contracts or cancellation penalties. You can pause or cancel your subscription whenever you want from your control panel. When canceling, you maintain access until the end of the paid period and can export all your data.'
+      }
+    ]
+  },
+  {
+    category: lang === 'es' ? 'Seguridad y Soporte' : 'Security & Support',
+    icon: '🔒',
+    faqs: [
+      {
+        question: lang === 'es'
+          ? '¿Qué medidas de seguridad protegen los datos de mis pacientes?'
+          : 'What security measures protect my patients\' data?',
+        answer: lang === 'es'
+          ? 'Cumplimos con GDPR y HIPAA. Usamos encriptación SSL 256-bit, servidores AWS certificados, backups automáticos diarios, autenticación de dos factores y auditorías de seguridad regulares. Los datos se almacenan en centros de datos certificados y nunca compartimos información personal.'
+          : 'We comply with GDPR and HIPAA. We use 256-bit SSL encryption, certified AWS servers, daily automatic backups, two-factor authentication and regular security audits. Data is stored in certified data centers and we never share personal information.'
+      },
+      {
+        question: lang === 'es'
+          ? '¿Qué tipo de soporte técnico ofrecen?'
+          : 'What type of technical support do you offer?',
+        answer: lang === 'es'
+          ? 'Soporte multicanal: chat en vivo, email, WhatsApp y videollamadas. Plan Profesional: soporte en horario laboral. Plan Premium: soporte extendido. Plan Enterprise: soporte prioritario 24/7. También ofrecemos configuración asistida, capacitación para tu equipo y recursos de ayuda completos.'
+          : 'Multi-channel support: live chat, email, WhatsApp and video calls. Professional Plan: business hours support. Premium Plan: extended support. Enterprise Plan: 24/7 priority support. We also offer assisted setup, team training and comprehensive help resources.'
+      },
+      {
+        question: lang === 'es'
+          ? '¿Qué sucede si tengo problemas técnicos durante horario de atención?'
+          : 'What happens if I have technical issues during business hours?',
+        answer: lang === 'es'
+          ? 'Nuestro sistema tiene 99.9% de uptime garantizado. Si hay problemas, nuestro equipo responde inmediatamente: Plan Professional en <4 horas, Premium en <2 horas, Enterprise en <30 minutos. Tenemos sistemas de respaldo automáticos y contingencias para que nunca pierdas citas o datos.'
+          : 'Our system has guaranteed 99.9% uptime. If there are issues, our team responds immediately: Professional Plan in <4 hours, Premium in <2 hours, Enterprise in <30 minutes. We have automatic backup systems and contingencies so you never lose appointments or data.'
+      }
+    ]
+  },
+  {
+    category: lang === 'es' ? 'Implementación' : 'Implementation',
+    icon: '🚀',
+    faqs: [
+      {
+        question: lang === 'es'
+          ? '¿Cuánto tiempo toma configurar el sistema completamente?'
+          : 'How long does it take to fully set up the system?',
+        answer: lang === 'es'
+          ? 'La configuración básica toma 15-30 minutos. Una configuración completa con personalizaciones, integraciones y capacitación del equipo toma 1-2 días. Ofrecemos configuración asistida gratuita donde nuestro equipo hace todo por ti mientras aprendes el sistema.'
+          : 'Basic setup takes 15-30 minutes. A complete setup with customizations, integrations and team training takes 1-2 days. We offer free assisted setup where our team does everything for you while you learn the system.'
+      },
+      {
+        question: lang === 'es'
+          ? '¿Necesito conocimientos técnicos para usar la plataforma?'
+          : 'Do I need technical knowledge to use the platform?',
+        answer: lang === 'es'
+          ? 'Para nada. La plataforma está diseñada para ser súper intuitiva. Si sabes usar WhatsApp o Google Calendar, puedes usar OntheDot. Incluimos videos tutoriales, guías paso a paso y soporte en español. La mayoría de profesionales empiezan a usarlo el mismo día.'
+          : 'Not at all. The platform is designed to be super intuitive. If you know how to use WhatsApp or Google Calendar, you can use OntheDot. We include tutorial videos, step-by-step guides and support in Spanish. Most professionals start using it the same day.'
+      },
+      {
+        question: lang === 'es'
+          ? '¿Puedo migrar mis citas existentes desde otros sistemas?'
+          : 'Can I migrate my existing appointments from other systems?',
+        answer: lang === 'es'
+          ? 'Sí, ayudamos con la migración gratuita desde Excel, Google Calendar, otras apps de citas o sistemas físicos. Nuestro equipo puede importar tu base de pacientes, historial de citas y configuraciones. El proceso es transparente y no interrumpe tu operación actual.'
+          : 'Yes, we help with free migration from Excel, Google Calendar, other appointment apps or physical systems. Our team can import your patient database, appointment history and settings. The process is transparent and doesn\'t interrupt your current operation.'
+      }
+    ]
+  }
+];
+
+// Generar datos estructurados para SEO
+const generateFAQStructuredData = () => {
+  const faqList = faqCategories.flatMap(category => category.faqs);
+  
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqList.map(faq => ({
+      "@type": "Question",
+      "name": faq.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": faq.answer
+      }
+    }))
+  };
+};
+
+const structuredData = generateFAQStructuredData();
+---
+
+<!-- Datos estructurados para SEO -->
+<script type="application/ld+json" set:html={JSON.stringify(structuredData)}></script>
+
+<section class="faq-section" id="faq" itemscope itemtype="https://schema.org/FAQPage">
+  <div class="container">
+    <!-- Header optimizado para SEO -->
+    <header class="section-header">
+      <h2 class="section-title" itemprop="headline">
+        {lang === 'es' ? 'Preguntas Frecuentes' : 'Frequently Asked Questions'}
+      </h2>
+      <p class="section-subtitle">
+        {lang === 'es'
+          ? 'Resolvemos todas tus dudas sobre el agendamiento online para profesionales de la salud'
+          : 'We answer all your questions about online scheduling for healthcare professionals'
+        }
+      </p>
+    </header>
+
+    <!-- Categorías de FAQ -->
+    <div class="faq-categories">
+      {faqCategories.map((category, categoryIndex) => (
+        <div class="faq-category" data-category={categoryIndex}>
+          <div class="category-header">
+            <span class="category-icon" aria-hidden="true">{category.icon}</span>
+            <h3 class="category-title">{category.category}</h3>
+            <span class="category-count">({category.faqs.length})</span>
+          </div>
+          
+          <div class="faq-list" role="list">
+            {category.faqs.map((faq, faqIndex) => (
+              <article 
+                class="faq-item" 
+                role="listitem"
+                itemscope 
+                itemtype="https://schema.org/Question"
+                data-faq={`${categoryIndex}-${faqIndex}`}
+              >
+                <button 
+                  class="faq-question" 
+                  aria-expanded="false"
+                  aria-controls={`faq-answer-${categoryIndex}-${faqIndex}`}
+                  id={`faq-button-${categoryIndex}-${faqIndex}`}
+                >
+                  <h4 itemprop="name">{faq.question}</h4>
+                  <span class="faq-toggle" aria-hidden="true">
+                    <svg class="faq-icon-plus" viewBox="0 0 24 24" fill="none">
+                      <path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    <svg class="faq-icon-minus" viewBox="0 0 24 24" fill="none">
+                      <path d="M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                  </span>
+                </button>
+                
+                <div 
+                  class="faq-answer" 
+                  id={`faq-answer-${categoryIndex}-${faqIndex}`}
+                  role="region"
+                  aria-labelledby={`faq-button-${categoryIndex}-${faqIndex}`}
+                  aria-hidden="true"
+                  itemscope 
+                  itemtype="https://schema.org/Answer"
+                >
+                  <div class="faq-answer-content" itemprop="text">
+                    <p>{faq.answer}</p>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- CTA al final -->
+    <div class="faq-cta">
+      <div class="faq-cta-content">
+        <h3>{lang === 'es' ? '¿No encuentras la respuesta?' : 'Can\'t find the answer?'}</h3>
+        <p>
+          {lang === 'es'
+            ? 'Nuestro equipo de soporte está disponible para ayudarte con cualquier pregunta específica'
+            : 'Our support team is available to help you with any specific questions'
+          }
+        </p>
+        <div class="faq-cta-buttons">
+          <a href={lang === 'es' ? '/contacto' : '/contact'} class="cta-button primary">
+            {lang === 'es' ? 'Contactar Soporte' : 'Contact Support'}
+          </a>
+          <a href="#" class="cta-button secondary">
+            {lang === 'es' ? 'Probar Gratis' : 'Try Free'}
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const faqButtons = document.querySelectorAll('.faq-question') as NodeListOf<HTMLButtonElement>;
+    const categoryHeaders = document.querySelectorAll('.category-header') as NodeListOf<HTMLElement>;
+    
+    // Función para cerrar todas las FAQs
+    function closeAllFAQs() {
+      faqButtons.forEach(button => {
+        const answer = button.nextElementSibling as HTMLElement;
+        const isExpanded = button.getAttribute('aria-expanded') === 'true';
+        
+        if (isExpanded && answer) {
+          button.setAttribute('aria-expanded', 'false');
+          answer.setAttribute('aria-hidden', 'true');
+          answer.style.maxHeight = '0px';
+          button.classList.remove('active');
+        }
+      });
+    }
+    
+    // Función para abrir/cerrar FAQ individual
+    function toggleFAQ(button: HTMLButtonElement) {
+      const answer = button.nextElementSibling as HTMLElement;
+      const isExpanded = button.getAttribute('aria-expanded') === 'true';
+      
+      if (!answer) return;
+      
+      if (isExpanded) {
+        // Cerrar
+        button.setAttribute('aria-expanded', 'false');
+        answer.setAttribute('aria-hidden', 'true');
+        answer.style.maxHeight = '0px';
+        button.classList.remove('active');
+      } else {
+        // Cerrar otras primero
+        closeAllFAQs();
+        
+        // Abrir esta
+        button.setAttribute('aria-expanded', 'true');
+        answer.setAttribute('aria-hidden', 'false');
+        answer.style.maxHeight = answer.scrollHeight + 'px';
+        button.classList.add('active');
+        
+        // Scroll suave hacia la pregunta
+        setTimeout(() => {
+          button.scrollIntoView({ 
+            behavior: 'smooth', 
+            block: 'nearest' 
+          });
+        }, 150);
+      }
+    }
+    
+    // Event listeners para preguntas
+    faqButtons.forEach(button => {
+      button.addEventListener('click', (e) => {
+        e.preventDefault();
+        toggleFAQ(button);
+      });
+      
+      // Accesibilidad con teclado
+      button.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          toggleFAQ(button);
+        }
+      });
+    });
+    
+    // Event listeners para categorías (opcional: colapsar/expandir categoría completa)
+    categoryHeaders.forEach(header => {
+      header.addEventListener('click', () => {
+        const category = header.parentElement;
+        const faqList = category?.querySelector('.faq-list') as HTMLElement;
+        
+        if (category && faqList) {
+          category.classList.toggle('collapsed');
+          
+          if (category.classList.contains('collapsed')) {
+            faqList.style.display = 'none';
+            // Cerrar todas las FAQs de esta categoría
+            const categoryButtons = faqList.querySelectorAll('.faq-question');
+            categoryButtons.forEach(btn => {
+              const button = btn as HTMLButtonElement;
+              const answer = button.nextElementSibling as HTMLElement;
+              if (answer) {
+                button.setAttribute('aria-expanded', 'false');
+                answer.setAttribute('aria-hidden', 'true');
+                answer.style.maxHeight = '0px';
+                button.classList.remove('active');
+              }
+            });
+          } else {
+            faqList.style.display = 'block';
+          }
+        }
+      });
+    });
+    
+    // Funcionalidad de búsqueda (si se implementa en el futuro)
+    const searchInput = document.getElementById('faq-search') as HTMLInputElement;
+    if (searchInput) {
+      searchInput.addEventListener('input', (e) => {
+        const query = (e.target as HTMLInputElement).value.toLowerCase();
+        const faqItems = document.querySelectorAll('.faq-item');
+        
+        faqItems.forEach(item => {
+          const question = item.querySelector('h4')?.textContent?.toLowerCase() || '';
+          const answer = item.querySelector('.faq-answer-content p')?.textContent?.toLowerCase() || '';
+          
+          if (question.includes(query) || answer.includes(query)) {
+            (item as HTMLElement).style.display = 'block';
+          } else {
+            (item as HTMLElement).style.display = 'none';
+          }
+        });
+      });
+    }
+  });
+</script>
+
+<style>
+  .faq-section {
+    padding: 8rem 0;
+    background: linear-gradient(135deg, #fafafa 0%, #ffffff 50%, #f8fafc 100%);
+    position: relative;
+  }
+
+  .faq-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 20% 30%, rgba(37, 99, 235, 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(16, 163, 74, 0.03) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  /* Header */
+  .section-header {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 6rem;
+  }
+
+  .section-title {
+    font-size: 3rem;
+    font-weight: 800;
+    color: var(--color-dark);
+    margin-bottom: 1.5rem;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+  }
+
+  .section-subtitle {
+    font-size: 1.25rem;
+    color: var(--color-gray-600);
+    line-height: 1.6;
+    font-weight: 400;
+  }
+
+  /* Categories Container */
+  .faq-categories {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: grid;
+    gap: 3rem;
+  }
+
+  /* Category */
+  .faq-category {
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+    border: 1px solid rgba(226, 232, 240, 0.8);
+    transition: all 0.3s ease;
+  }
+
+  .faq-category:hover {
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+    transform: translateY(-2px);
+  }
+
+  /* Category Header */
+  .category-header {
+    background: linear-gradient(135deg, var(--color-gray-50), white);
+    padding: 2rem;
+    border-bottom: 1px solid var(--color-gray-100);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .category-header:hover {
+    background: linear-gradient(135deg, var(--color-gray-100), var(--color-gray-50));
+  }
+
+  .category-icon {
+    font-size: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-purple-primary));
+    border-radius: 16px;
+    flex-shrink: 0;
+  }
+
+  .category-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-dark);
+    margin: 0;
+    flex-grow: 1;
+  }
+
+  .category-count {
+    background: var(--color-primary);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.875rem;
+    font-weight: 600;
+  }
+
+  /* FAQ List */
+  .faq-list {
+    padding: 0;
+  }
+
+  .faq-category.collapsed .faq-list {
+    display: none;
+  }
+
+  /* FAQ Item */
+  .faq-item {
+    border-bottom: 1px solid var(--color-gray-100);
+    transition: all 0.3s ease;
+  }
+
+  .faq-item:last-child {
+    border-bottom: none;
+  }
+
+  .faq-item:hover {
+    background: rgba(37, 99, 235, 0.02);
+  }
+
+  /* FAQ Question */
+  .faq-question {
+    width: 100%;
+    padding: 2rem;
+    background: none;
+    border: none;
+    text-align: left;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 2rem;
+    transition: all 0.3s ease;
+    min-height: auto;
+  }
+
+  .faq-question:hover {
+    background: rgba(37, 99, 235, 0.04);
+  }
+
+  .faq-question h4 {
+    margin: 0;
+    font-size: 1.25rem;
+    color: var(--color-dark);
+    font-weight: 600;
+    line-height: 1.4;
+    text-align: left;
+    flex-grow: 1;
+  }
+
+  .faq-question.active h4 {
+    color: var(--color-primary);
+  }
+
+  /* FAQ Toggle */
+  .faq-toggle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--color-gray-100);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+    position: relative;
+  }
+
+  .faq-question:hover .faq-toggle {
+    background: var(--color-primary);
+    color: white;
+  }
+
+  .faq-question.active .faq-toggle {
+    background: var(--color-green-primary);
+    color: white;
+    transform: rotate(180deg);
+  }
+
+  .faq-toggle svg {
+    width: 20px;
+    height: 20px;
+    transition: all 0.3s ease;
+    position: absolute;
+  }
+
+  .faq-icon-minus {
+    opacity: 0;
+    transform: rotate(90deg);
+  }
+
+  .faq-question.active .faq-icon-plus {
+    opacity: 0;
+    transform: rotate(90deg);
+  }
+
+  .faq-question.active .faq-icon-minus {
+    opacity: 1;
+    transform: rotate(0deg);
+  }
+
+  /* FAQ Answer */
+  .faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    background: rgba(37, 99, 235, 0.02);
+  }
+
+  .faq-answer-content {
+    padding: 0 2rem 2rem 2rem;
+  }
+
+  .faq-answer-content p {
+    margin: 0;
+    color: var(--color-gray-700);
+    line-height: 1.7;
+    font-size: 1rem;
+  }
+
+  /* FAQ CTA */
+  .faq-cta {
+    margin-top: 6rem;
+    text-align: center;
+  }
+
+  .faq-cta-content {
+    background: linear-gradient(135deg, var(--color-primary), var(--color-purple-primary));
+    color: white;
+    padding: 4rem 3rem;
+    border-radius: 24px;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .faq-cta h3 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: white;
+  }
+
+  .faq-cta p {
+    font-size: 1.125rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+    line-height: 1.6;
+  }
+
+  .faq-cta-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .cta-button {
+    padding: 1rem 2rem;
+    border-radius: 12px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .cta-button.primary {
+    background: white;
+    color: var(--color-primary);
+    box-shadow: 0 4px 16px rgba(255, 255, 255, 0.2);
+  }
+
+  .cta-button.primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(255, 255, 255, 0.3);
+  }
+
+  .cta-button.secondary {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(8px);
+  }
+
+  .cta-button.secondary:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.5);
+    transform: translateY(-2px);
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .faq-section {
+      padding: 5rem 0;
+    }
+
+    .section-title {
+      font-size: 2.25rem;
+    }
+
+    .section-subtitle {
+      font-size: 1.125rem;
+    }
+
+    .section-header {
+      margin-bottom: 4rem;
+    }
+
+    .faq-categories {
+      gap: 2rem;
+    }
+
+    .category-header {
+      padding: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .category-icon {
+      width: 50px;
+      height: 50px;
+      font-size: 1.5rem;
+    }
+
+    .category-title {
+      font-size: 1.25rem;
+    }
+
+    .faq-question {
+      padding: 1.5rem;
+      gap: 1rem;
+    }
+
+    .faq-question h4 {
+      font-size: 1.125rem;
+    }
+
+    .faq-answer-content {
+      padding: 0 1.5rem 1.5rem 1.5rem;
+    }
+
+    .faq-cta-content {
+      padding: 3rem 2rem;
+      margin: 0 1rem;
+    }
+
+    .faq-cta h3 {
+      font-size: 1.75rem;
+    }
+
+    .faq-cta-buttons {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .cta-button {
+      width: 100%;
+      max-width: 300px;
+      justify-content: center;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .category-header {
+      padding: 1rem;
+    }
+
+    .faq-question {
+      padding: 1rem;
+    }
+
+    .faq-answer-content {
+      padding: 0 1rem 1rem 1rem;
+    }
+
+    .faq-cta-content {
+      padding: 2rem 1.5rem;
+    }
+
+    .faq-toggle {
+      width: 32px;
+      height: 32px;
+    }
+
+    .faq-toggle svg {
+      width: 16px;
+      height: 16px;
+    }
+  }
+</style> 

@@ -1,0 +1,86 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+---
+
+<BaseLayout 
+  title="Privacy Policy"
+  description="Learn how Home Agenda collects, uses, and protects your personal information."
+>
+  <Header />
+  <main>
+    <section class="section" id="main-content">
+      <div class="container">
+        <h1 class="text-center mb-8">Privacy Policy</h1>
+        <div class="content">
+          <p><em>Last updated: January 2024</em></p>
+          
+          <h2>Information We Collect</h2>
+          <p>
+            We collect information you provide directly to us, such as when you contact us through our website, 
+            subscribe to our newsletter, or use our services.
+          </p>
+          
+          <h2>How We Use Your Information</h2>
+          <p>
+            We use the information we collect to provide, maintain, and improve our services, 
+            communicate with you, and comply with legal obligations.
+          </p>
+          
+          <h2>Information Sharing</h2>
+          <p>
+            We do not sell, trade, or otherwise transfer your personal information to third parties 
+            without your consent, except as described in this policy.
+          </p>
+          
+          <h2>Data Security</h2>
+          <p>
+            We implement appropriate technical and organizational measures to protect your personal 
+            information against unauthorized access, alteration, disclosure, or destruction.
+          </p>
+          
+          <h2>Your Rights</h2>
+          <p>
+            You have the right to access, update, or delete your personal information. 
+            You may also opt out of certain communications from us.
+          </p>
+          
+          <h2>Contact Us</h2>
+          <p>
+            If you have any questions about this Privacy Policy, please contact us at 
+            <a href="mailto:privacy@homeagenda.com">privacy@homeagenda.com</a>.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>
+
+<style>
+  .content {
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+  
+  .content h2 {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    color: #1a1a1a;
+  }
+  
+  .content p {
+    margin-bottom: 1rem;
+  }
+  
+  .content a {
+    color: #3182ce;
+    text-decoration: none;
+  }
+  
+  .content a:hover {
+    text-decoration: underline;
+  }
+</style> 
