@@ -1,0 +1,442 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { getLangFromUrl, useTranslations } from '@/i18n/config';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<BaseLayout title="Planes de Precios | OntheDot" description="Elige el plan que mejor se adapte a tu práctica profesional">
+  <main>
+    <section class="pricing-section">
+      <div class="container">
+        <div class="pricing-header">
+          <h1 class="pricing-title">Elige el plan que mejor se adapte a tu práctica profesional</h1>
+        </div>
+        
+        <div class="pricing-grid">
+          <!-- Plan Profesional -->
+          <div class="pricing-card">
+            <div class="plan-badge recommended">RECOMENDADO</div>
+            <div class="plan-header">
+              <h3 class="plan-name">Profesional</h3>
+              <div class="plan-price">
+                <span class="price">$29</span>
+                <span class="price-period">por usuario / mes</span>
+              </div>
+              <p class="plan-description">
+                Citas ilimitadas, branding personalizado, integración Google Calendar
+              </p>
+            </div>
+            
+            <div class="plan-features">
+              <div class="feature-group">
+                <div class="feature-item">
+                  <svg class="feature-icon" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                  </svg>
+                  <span>Citas ilimitadas</span>
+                </div>
+                <div class="feature-item">
+                  <svg class="feature-icon" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                  </svg>
+                  <span>Branding personalizado</span>
+                </div>
+                <div class="feature-item">
+                  <svg class="feature-icon" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                  </svg>
+                  <span>Integración Google Calendar</span>
+                </div>
+                <div class="feature-item">
+                  <svg class="feature-icon" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                  </svg>
+                  <span>Recordatorios SMS y Email</span>
+                </div>
+                <div class="feature-item">
+                  <svg class="feature-icon" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                  </svg>
+                  <span>Página de agendamiento profesional</span>
+                </div>
+                <div class="feature-item">
+                  <svg class="feature-icon" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                  </svg>
+                  <span>Soporte prioritario</span>
+                </div>
+                <div class="feature-item">
+                  <svg class="feature-icon" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                  </svg>
+                  <span>Reportes básicos</span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="plan-cta">
+              <button class="cta-button professional">
+                PRUEBA GRATUITA DE 14 DÍAS
+              </button>
+              <p class="trial-note">No se requiere tarjeta de crédito</p>
+            </div>
+          </div>
+
+          <!-- Plan Premium -->
+          <div class="pricing-card">
+            <div class="plan-header">
+              <h3 class="plan-name">Premium</h3>
+              <div class="plan-price">
+                <span class="price">$59</span>
+                <span class="price-period">por usuario / mes</span>
+              </div>
+              <p class="plan-description">
+                Pagos online, recordatorios WhatsApp, formularios personalizados
+              </p>
+            </div>
+            
+            <div class="plan-features">
+              <div class="feature-group">
+                <div class="feature-item">
+                  <svg class="feature-icon" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                  </svg>
+                  <span>Todo lo de Profesional y más:</span>
+                </div>
+                <div class="feature-item">
+                  <svg class="feature-icon" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                  </svg>
+                  <span>Pagos online integrados</span>
+                </div>
+                <div class="feature-item">
+                  <svg class="feature-icon" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                  </svg>
+                  <span>Recordatorios WhatsApp</span>
+                </div>
+                <div class="feature-item">
+                  <svg class="feature-icon" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                  </svg>
+                  <span>Formularios personalizados</span>
+                </div>
+                <div class="feature-item">
+                  <svg class="feature-icon" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                  </svg>
+                  <span>Reportes avanzados y analytics</span>
+                </div>
+                <div class="feature-item">
+                  <svg class="feature-icon" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                  </svg>
+                  <span>Automatizaciones avanzadas</span>
+                </div>
+                <div class="feature-item">
+                  <svg class="feature-icon" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                  </svg>
+                  <span>Integración con Zoom/Teams</span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="plan-cta">
+              <button class="cta-button premium">
+                PRUEBA GRATUITA DE 14 DÍAS
+              </button>
+              <p class="trial-note">No se requiere tarjeta de crédito</p>
+            </div>
+          </div>
+
+          <!-- Plan Empresas -->
+          <div class="pricing-card">
+            <div class="plan-header">
+              <h3 class="plan-name">Empresas</h3>
+              <div class="plan-price">
+                <span class="price">$99</span>
+                <span class="price-period">por usuario / mes</span>
+              </div>
+              <p class="plan-description">
+                Multiusuario, API, reportes avanzados
+              </p>
+            </div>
+            
+            <div class="plan-features">
+              <div class="feature-group">
+                <div class="feature-item">
+                  <svg class="feature-icon" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                  </svg>
+                  <span>Todo lo de Premium y más:</span>
+                </div>
+                <div class="feature-item">
+                  <svg class="feature-icon" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                  </svg>
+                  <span>Multiusuario avanzado</span>
+                </div>
+                <div class="feature-item">
+                  <svg class="feature-icon" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                  </svg>
+                  <span>API completa y webhooks</span>
+                </div>
+                <div class="feature-item">
+                  <svg class="feature-icon" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                  </svg>
+                  <span>Integraciones personalizadas</span>
+                </div>
+                <div class="feature-item">
+                  <svg class="feature-icon" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                  </svg>
+                  <span>Soporte dedicado 24/7</span>
+                </div>
+                <div class="feature-item">
+                  <svg class="feature-icon" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                  </svg>
+                  <span>Onboarding personalizado</span>
+                </div>
+                <div class="feature-item">
+                  <svg class="feature-icon" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                  </svg>
+                  <span>SLA garantizado</span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="plan-cta">
+              <button class="cta-button enterprise">
+                CONTACTAR VENTAS
+              </button>
+              <p class="trial-note">No se requiere tarjeta de crédito</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="comparison-section">
+          <button class="comparison-button">
+            COMPARAR TODAS LAS CARACTERÍSTICAS
+          </button>
+        </div>
+      </div>
+    </section>
+  </main>
+</BaseLayout>
+
+<style>
+  .pricing-section {
+    padding: 4rem 0;
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+    min-height: 100vh;
+  }
+
+  .pricing-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .pricing-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+  }
+
+  .pricing-card {
+    background: white;
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    position: relative;
+    border: 1px solid #e2e8f0;
+    transition: all 0.3s ease;
+  }
+
+  .pricing-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+  }
+
+  .plan-badge {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #3b82f6;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .plan-header {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .plan-name {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 0.5rem;
+  }
+
+  .plan-price {
+    margin-bottom: 1rem;
+  }
+
+  .price {
+    font-size: 3rem;
+    font-weight: 800;
+    color: #16a34a;
+  }
+
+  .price-period {
+    color: #64748b;
+    font-size: 0.875rem;
+    display: block;
+    margin-top: 0.25rem;
+  }
+
+  .plan-description {
+    color: #64748b;
+    line-height: 1.6;
+    font-size: 0.9rem;
+  }
+
+  .plan-features {
+    margin-bottom: 2rem;
+  }
+
+  .feature-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .feature-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.9rem;
+    color: #374151;
+  }
+
+  .feature-icon {
+    width: 1.25rem;
+    height: 1.25rem;
+    color: #16a34a;
+    flex-shrink: 0;
+  }
+
+  .plan-cta {
+    text-align: center;
+  }
+
+  .cta-button {
+    width: 100%;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .cta-button.professional {
+    background: #3b82f6;
+    color: white;
+  }
+
+  .cta-button.professional:hover {
+    background: #2563eb;
+  }
+
+  .cta-button.premium {
+    background: #16a34a;
+    color: white;
+  }
+
+  .cta-button.premium:hover {
+    background: #15803d;
+  }
+
+  .cta-button.enterprise {
+    background: #9333ea;
+    color: white;
+  }
+
+  .cta-button.enterprise:hover {
+    background: #7c3aed;
+  }
+
+  .trial-note {
+    font-size: 0.75rem;
+    color: #64748b;
+    margin-top: 0.5rem;
+  }
+
+  .comparison-section {
+    text-align: center;
+    margin-top: 3rem;
+  }
+
+  .comparison-button {
+    background: #f97316;
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .comparison-button:hover {
+    background: #ea580c;
+  }
+
+  @media (max-width: 768px) {
+    .pricing-title {
+      font-size: 2rem;
+    }
+
+    .pricing-grid {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    .pricing-card {
+      padding: 1.5rem;
+    }
+
+    .price {
+      font-size: 2.5rem;
+    }
+  }
+</style> 
