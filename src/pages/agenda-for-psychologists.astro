@@ -10,15 +10,15 @@ import FinalCTA from '../components/FinalCTA.astro';
 import Footer from '../components/Footer.astro';
 ---
 
-<BaseLayout title="Scheduling App for Doctors | On the Dot" description="With On the Dot manage your medical practice, reduce no-shows and get paid online. The scheduling app for doctors. Request your free demo!">
+<BaseLayout title="Scheduling App for Psychologists | On the Dot" description="With On the Dot manage your psychology practice, reduce no-shows and get paid online. The scheduling app for psychologists. Request your free demo!">
   <Header />
   <main>
     <!-- 1. Hero Above-the-Fold -->
     <section class="hero" id="main-content">
       <div class="container">
         <div class="hero-content">
-          <h1>OntheDot: Scheduling App for Doctors that Helps You Scale Your Practice</h1>
-          <p class="hero-subtitle">No more headaches with patients who don't show up, overlapping schedules, or pending payments. Automate your schedule and focus on what really matters: your patients' health.</p>
+          <h1>OntheDot: Scheduling App for Psychologists that Helps You Scale Your Practice</h1>
+          <p class="hero-subtitle">No more headaches with patients who don't show up, overlapping schedules, or pending payments. Automate your schedule and focus on what really matters: your patients.</p>
           <div class="hero-cta">
             <a href="#contact" class="btn btn-primary">Schedule your free demo</a>
             <button type="button" class="btn btn-secondary" onclick="openWaitlistModal()">
@@ -29,11 +29,11 @@ import Footer from '../components/Footer.astro';
         <div class="hero-image">
           <div class="mockup-phone">
             <div class="calendar-preview">
-              <div class="slot booked">09:00 - Initial consultation</div>
+              <div class="slot booked">09:00 - Individual therapy</div>
               <div class="slot available">10:00 - Available</div>
-              <div class="slot booked">11:00 - Follow-up</div>
+              <div class="slot booked">11:00 - Couple session</div>
               <div class="slot available">12:00 - Available</div>
-              <div class="slot booked">14:00 - Check-up</div>
+              <div class="slot booked">14:00 - Follow-up</div>
             </div>
           </div>
         </div>
@@ -47,13 +47,13 @@ import Footer from '../components/Footer.astro';
         <div class="pain-cards">
           <div class="pain-card">
             <div class="pain-icon">😰</div>
-            <h3>Patients missing important appointments</h3>
-            <p>You lose time and money when patients don't confirm or forget their appointments, affecting their medical follow-up.</p>
+            <h3>Patients missing important sessions</h3>
+            <p>You lose time and money when patients don't confirm or forget their appointments, affecting their therapeutic process.</p>
           </div>
           <div class="pain-card">
             <div class="pain-icon">📞</div>
             <h3>Hours lost confirming appointments via WhatsApp</h3>
-            <p>You spend valuable time manually confirming each appointment instead of reviewing medical records or seeing more patients.</p>
+            <p>You spend valuable time manually confirming each session instead of preparing for therapy or seeing more patients.</p>
           </div>
         </div>
       </div>
@@ -70,9 +70,9 @@ import Footer from '../components/Footer.astro';
 </BaseLayout>
 
 <style>
-  /* Hero específico para médicos */
+  /* Hero específico para psicólogos */
   .hero {
-    background: linear-gradient(135deg, var(--color-purple-primary) 0%, #ffffff 100%);
+    background: linear-gradient(135deg, var(--color-blue-secondary) 0%, #ffffff 100%);
     padding: 4rem 0 6rem;
   }
 
@@ -138,7 +138,7 @@ import Footer from '../components/Footer.astro';
   }
 
   .pain-card h3 {
-    color: var(--color-purple-primary);
+    color: var(--color-primary);
     margin-bottom: 1rem;
     font-size: 1.5rem;
   }
@@ -156,7 +156,7 @@ import Footer from '../components/Footer.astro';
     border-radius: 25px;
     box-shadow: 0 20px 40px rgba(0,0,0,0.1);
     padding: 30px 20px;
-    border: 8px solid var(--color-purple-primary);
+    border: 8px solid var(--color-primary);
     margin: 2rem auto 0;
   }
 
@@ -175,7 +175,7 @@ import Footer from '../components/Footer.astro';
   }
 
   .slot.booked {
-    background: var(--color-purple-primary);
+    background: var(--color-primary);
     color: white;
   }
 

@@ -27,10 +27,11 @@ const footerData = {
   specialties: {
     title: lang === 'es' ? 'Especialidades' : 'Specialties',
     links: [
-      { name: lang === 'es' ? 'Psicólogos' : 'Psychologists', href: getLocalizedPath('/psicologos') },
-      { name: lang === 'es' ? 'Nutricionistas' : 'Nutritionists', href: getLocalizedPath('/nutricionistas') },
-      { name: lang === 'es' ? 'Médicos' : 'Doctors', href: getLocalizedPath('/medicos') },
-      { name: lang === 'es' ? 'Fisioterapeutas' : 'Physical Therapists', href: getLocalizedPath('/fisioterapeutas') }
+      { name: lang === 'es' ? 'Agenda para Psicólogos' : 'Schedule for Psychologists', href: lang === 'es' ? '/agenda-para-psicologos' : '/agenda-for-psychologists' },
+      { name: lang === 'es' ? 'Agenda para Nutricionistas' : 'Schedule for Nutritionists', href: lang === 'es' ? '/agenda-para-nutricionistas' : '/agenda-for-nutritionists' },
+      { name: lang === 'es' ? 'Agenda para Dentistas' : 'Schedule for Dentists', href: lang === 'es' ? '/agenda-para-dentistas' : '/agenda-for-dentists' },
+      { name: lang === 'es' ? 'Agenda para Médicos' : 'Schedule for Doctors', href: lang === 'es' ? '/agenda-para-medicos' : '/agenda-for-doctors' },
+      { name: lang === 'es' ? 'Agenda para Kinesiólogos' : 'Schedule for Physiotherapists', href: lang === 'es' ? '/agenda-para-kinesiologos' : '/agenda-for-physiotherapists' }
     ]
   },
   company: {

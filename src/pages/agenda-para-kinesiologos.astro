@@ -9,12 +9,12 @@ import FAQ from '../components/FAQ.astro';
 import FinalCTA from '../components/FinalCTA.astro';
 import Footer from '../components/Footer.astro';
 
-const metaDescription = "Optimiza tu consulta médica con OntheDot. Software de agendamiento diseñado para médicos, con gestión de pacientes, recordatorios automáticos y seguimiento clínico. Ideal para consultas privadas y centros médicos.";
-const keywords = "software para médicos, agenda médica online, sistema de citas médicas, gestión consulta médica, software médico, sistema para doctores";
+const metaDescription = "Optimiza tu clínica de kinesiología con OntheDot. Software de agendamiento diseñado para kinesiólogos, con seguimiento de tratamientos, recordatorios automáticos y gestión de pacientes. Ideal para rehabilitación física y terapia.";
+const keywords = "software para kinesiólogos, agenda kinesiología, sistema de citas kinesiología, gestión clínica kinesiológica, software rehabilitación física, agenda terapia física";
 ---
 
 <BaseLayout 
-  title="Software de Gestión y Agendamiento para Médicos | OntheDot" 
+  title="Software de Gestión y Agendamiento para Kinesiólogos | OntheDot" 
   description={metaDescription}
   keywords={keywords}
 >
@@ -24,8 +24,8 @@ const keywords = "software para médicos, agenda médica online, sistema de cita
     <section class="hero" id="main-content">
       <div class="container">
         <div class="hero-content">
-          <h1>OntheDot: Software Inteligente para Consultas Médicas</h1>
-          <p class="hero-subtitle">Optimiza tu consulta médica con agendamiento automatizado, recordatorios a pacientes y gestión clínica. Enfócate en la atención médica mientras nosotros manejamos la agenda.</p>
+          <h1>OntheDot: Software Inteligente para Clínicas de Kinesiología</h1>
+          <p class="hero-subtitle">Optimiza tu clínica kinesiológica con agendamiento automatizado, seguimiento de tratamientos y recordatorios a pacientes. Enfócate en la rehabilitación mientras nosotros manejamos la agenda.</p>
           <div class="hero-cta">
             <a href="#contact" class="btn btn-primary">Agenda tu demo gratis</a>
             <button type="button" class="btn btn-secondary" onclick="openWaitlistModal()">
@@ -36,11 +36,11 @@ const keywords = "software para médicos, agenda médica online, sistema de cita
         <div class="hero-image">
           <div class="mockup-phone">
             <div class="calendar-preview">
-              <div class="slot booked">09:00 - Consulta general</div>
+              <div class="slot booked">09:00 - Rehabilitación lumbar</div>
               <div class="slot available">10:00 - Disponible</div>
-              <div class="slot booked">11:00 - Control mensual</div>
+              <div class="slot booked">11:00 - Terapia manual</div>
               <div class="slot available">12:00 - Disponible</div>
-              <div class="slot booked">14:00 - Primera consulta</div>
+              <div class="slot booked">14:00 - Control post-operatorio</div>
             </div>
           </div>
         </div>
@@ -50,46 +50,46 @@ const keywords = "software para médicos, agenda médica online, sistema de cita
     <!-- 2. Pain Block -->
     <section class="pain-block">
       <div class="container">
-        <h2>Desafíos Comunes en la Gestión de Consultas Médicas</h2>
+        <h2>Desafíos Comunes en la Gestión de Clínicas Kinesiológicas</h2>
         <div class="pain-cards">
           <div class="pain-card">
             <div class="pain-icon">😰</div>
-            <h3>Las Inasistencias Afectan tu Productividad</h3>
-            <p>El tiempo de consulta perdido impacta directamente en tus ingresos cuando los pacientes no se presentan o cancelan a último momento.</p>
+            <h3>Las Inasistencias Afectan la Continuidad del Tratamiento</h3>
+            <p>Las sesiones perdidas interrumpen el progreso de rehabilitación y generan pérdidas económicas cuando los pacientes no asisten a sus terapias programadas.</p>
           </div>
           <div class="pain-card">
             <div class="pain-icon">📞</div>
             <h3>Personal Abrumado con Tareas Administrativas</h3>
-            <p>Tu equipo pasa horas confirmando citas y reagendando pacientes en lugar de enfocarse en la atención y servicio al paciente.</p>
+            <p>Tu equipo pasa horas confirmando citas y reagendando pacientes en lugar de enfocarse en brindar una mejor atención terapéutica.</p>
           </div>
         </div>
       </div>
     </section>
 
     <!-- 3. Industry-Specific Benefits -->
-    <section class="benefits-medical">
+    <section class="benefits-physio">
       <div class="container">
-        <h2>Diseñado para Consultas Médicas</h2>
+        <h2>Diseñado para Clínicas de Kinesiología</h2>
         <div class="benefits-grid">
           <div class="benefit-card">
-            <div class="benefit-icon">👨‍⚕️</div>
-            <h3>Gestión de Consultas</h3>
-            <p>Configura diferentes tipos de consulta y duración según el tipo de atención médica</p>
+            <div class="benefit-icon">🏃</div>
+            <h3>Seguimiento de Tratamientos</h3>
+            <p>Monitorea el progreso de rehabilitación y programa automáticamente las sesiones de seguimiento</p>
           </div>
           <div class="benefit-card">
-            <div class="benefit-icon">📊</div>
-            <h3>Historial Clínico Digital</h3>
-            <p>Accede al historial de consultas y seguimiento de cada paciente</p>
+            <div class="benefit-icon">⚡</div>
+            <h3>Gestión de Equipos y Salas</h3>
+            <p>Optimiza el uso de equipos de terapia y espacios de rehabilitación</p>
           </div>
           <div class="benefit-card">
             <div class="benefit-icon">📱</div>
             <h3>Comunicación con Pacientes</h3>
-            <p>Recordatorios automáticos de citas con instrucciones de preparación</p>
+            <p>Recordatorios automáticos de citas con instrucciones de preparación para la terapia</p>
           </div>
           <div class="benefit-card">
             <div class="benefit-icon">📅</div>
-            <h3>Controles y Seguimiento</h3>
-            <p>Programa controles periódicos y gestiona tratamientos continuos</p>
+            <h3>Planes de Tratamiento</h3>
+            <p>Programa series completas de sesiones y mantén un registro del avance</p>
           </div>
         </div>
       </div>
@@ -99,28 +99,28 @@ const keywords = "software para médicos, agenda médica online, sistema de cita
     <HowItWorks />
     <Integrations />
 
-    <!-- 4. Medical-Specific Testimonials -->
-    <section class="testimonials-medical">
+    <!-- 4. Physio-Specific Testimonials -->
+    <section class="testimonials-physio">
       <div class="container">
-        <h2>Respaldado por Médicos Líderes</h2>
+        <h2>Respaldado por Clínicas de Kinesiología Líderes</h2>
         <div class="testimonials-grid">
           <div class="testimonial-card">
-            <p>"OntheDot ha transformado la gestión de mi consulta. Los pacientes valoran los recordatorios automáticos y la facilidad para agendar, mientras que mi equipo puede enfocarse en brindar una mejor atención."</p>
+            <p>"OntheDot ha revolucionado la gestión de nuestra clínica. Los pacientes cumplen mejor sus series de tratamiento gracias a los recordatorios automáticos, y el seguimiento de progreso es mucho más eficiente."</p>
             <div class="author">
-              <img src="/testimonials/doctor-1.jpg" alt="Dr. Carlos Ramírez" />
+              <img src="/testimonials/physio-1.jpg" alt="Klgo. Juan Martínez" />
               <div>
-                <strong>Dr. Carlos Ramírez</strong>
-                <span>Medicina Interna, Clínica San José</span>
+                <strong>Klgo. Juan Martínez</strong>
+                <span>Director, Centro de Rehabilitación Física</span>
               </div>
             </div>
           </div>
           <div class="testimonial-card">
-            <p>"La gestión de controles y seguimiento de pacientes es mucho más eficiente ahora. El sistema nos ayuda a mantener un registro detallado y a programar las consultas de seguimiento de manera automática."</p>
+            <p>"La programación de series de sesiones y el seguimiento de tratamientos han mejorado significativamente la adherencia de nuestros pacientes. Además, el personal ahora tiene más tiempo para la atención terapéutica."</p>
             <div class="author">
-              <img src="/testimonials/doctor-2.jpg" alt="Dra. Laura Sánchez" />
+              <img src="/testimonials/physio-2.jpg" alt="Klga. Ana Silva" />
               <div>
-                <strong>Dra. Laura Sánchez</strong>
-                <span>Medicina Familiar, Centro Médico Bienestar</span>
+                <strong>Klga. Ana Silva</strong>
+                <span>Especialista en Rehabilitación Deportiva</span>
               </div>
             </div>
           </div>
@@ -135,9 +135,9 @@ const keywords = "software para médicos, agenda médica online, sistema de cita
 </BaseLayout>
 
 <style>
-  /* Hero específico para médicos */
+  /* Hero específico para kinesiología */
   .hero {
-    background: linear-gradient(135deg, #e9d5ff 0%, #ffffff 100%);
+    background: linear-gradient(135deg, #dcfce7 0%, #ffffff 100%);
     padding: 4rem 0 6rem;
   }
 
@@ -203,7 +203,7 @@ const keywords = "software para médicos, agenda médica online, sistema de cita
   }
 
   .pain-card h3 {
-    color: #a855f7;
+    color: #22c55e;
     margin-bottom: 1rem;
     font-size: 1.5rem;
   }
@@ -214,12 +214,12 @@ const keywords = "software para médicos, agenda médica online, sistema de cita
   }
 
   /* Benefits Section */
-  .benefits-medical {
+  .benefits-physio {
     padding: 4rem 0;
     background: #f8fafc;
   }
 
-  .benefits-medical h2 {
+  .benefits-physio h2 {
     text-align: center;
     font-size: 2.5rem;
     margin-bottom: 3rem;
@@ -248,7 +248,7 @@ const keywords = "software para médicos, agenda médica online, sistema de cita
   }
 
   .benefit-card h3 {
-    color: #a855f7;
+    color: #22c55e;
     margin-bottom: 1rem;
     font-size: 1.25rem;
   }
@@ -259,12 +259,12 @@ const keywords = "software para médicos, agenda médica online, sistema de cita
   }
 
   /* Testimonials Section */
-  .testimonials-medical {
+  .testimonials-physio {
     padding: 4rem 0;
     background: white;
   }
 
-  .testimonials-medical h2 {
+  .testimonials-physio h2 {
     text-align: center;
     font-size: 2.5rem;
     margin-bottom: 3rem;
@@ -283,7 +283,7 @@ const keywords = "software para médicos, agenda médica online, sistema de cita
     background: #f8fafc;
     padding: 2rem;
     border-radius: 12px;
-    border-left: 4px solid #a855f7;
+    border-left: 4px solid #22c55e;
   }
 
   .testimonial-card p {
@@ -326,7 +326,7 @@ const keywords = "software para médicos, agenda médica online, sistema de cita
     border-radius: 25px;
     box-shadow: 0 20px 40px rgba(0,0,0,0.1);
     padding: 30px 20px;
-    border: 8px solid #a855f7;
+    border: 8px solid #22c55e;
     margin: 2rem auto 0;
   }
 
@@ -345,7 +345,7 @@ const keywords = "software para médicos, agenda médica online, sistema de cita
   }
 
   .slot.booked {
-    background: #a855f7;
+    background: #22c55e;
     color: white;
   }
 

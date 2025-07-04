@@ -9,12 +9,12 @@ import FAQ from '../components/FAQ.astro';
 import FinalCTA from '../components/FinalCTA.astro';
 import Footer from '../components/Footer.astro';
 
-const metaDescription = "Optimiza tu consulta médica con OntheDot. Software de agendamiento diseñado para médicos, con gestión de pacientes, recordatorios automáticos y seguimiento clínico. Ideal para consultas privadas y centros médicos.";
-const keywords = "software para médicos, agenda médica online, sistema de citas médicas, gestión consulta médica, software médico, sistema para doctores";
+const metaDescription = "Transform your dental practice with OntheDot's scheduling app. Reduce no-shows, automate appointment reminders, and manage your dental clinic efficiently. Perfect for dentists, orthodontists, and dental specialists.";
+const keywords = "dental scheduling software, dental practice management, dental appointment system, dental clinic software, dentist appointment booking, dental practice automation";
 ---
 
 <BaseLayout 
-  title="Software de Gestión y Agendamiento para Médicos | OntheDot" 
+  title="Dental Practice Management & Scheduling Software | OntheDot" 
   description={metaDescription}
   keywords={keywords}
 >
@@ -24,23 +24,23 @@ const keywords = "software para médicos, agenda médica online, sistema de cita
     <section class="hero" id="main-content">
       <div class="container">
         <div class="hero-content">
-          <h1>OntheDot: Software Inteligente para Consultas Médicas</h1>
-          <p class="hero-subtitle">Optimiza tu consulta médica con agendamiento automatizado, recordatorios a pacientes y gestión clínica. Enfócate en la atención médica mientras nosotros manejamos la agenda.</p>
+          <h1>OntheDot: Smart Scheduling Software for Modern Dental Practices</h1>
+          <p class="hero-subtitle">Streamline your dental practice with automated scheduling, patient reminders, and treatment follow-ups. Focus on providing excellent dental care while we handle the administrative work.</p>
           <div class="hero-cta">
-            <a href="#contact" class="btn btn-primary">Agenda tu demo gratis</a>
+            <a href="#contact" class="btn btn-primary">Schedule your free demo</a>
             <button type="button" class="btn btn-secondary" onclick="openWaitlistModal()">
-              Ver planes y precios
+              View plans & pricing
             </button>
           </div>
         </div>
         <div class="hero-image">
           <div class="mockup-phone">
             <div class="calendar-preview">
-              <div class="slot booked">09:00 - Consulta general</div>
-              <div class="slot available">10:00 - Disponible</div>
-              <div class="slot booked">11:00 - Control mensual</div>
-              <div class="slot available">12:00 - Disponible</div>
-              <div class="slot booked">14:00 - Primera consulta</div>
+              <div class="slot booked">09:00 - Dental cleaning</div>
+              <div class="slot available">10:00 - Available</div>
+              <div class="slot booked">11:00 - Root canal</div>
+              <div class="slot available">12:00 - Available</div>
+              <div class="slot booked">14:00 - Orthodontic check</div>
             </div>
           </div>
         </div>
@@ -50,46 +50,46 @@ const keywords = "software para médicos, agenda médica online, sistema de cita
     <!-- 2. Pain Block -->
     <section class="pain-block">
       <div class="container">
-        <h2>Desafíos Comunes en la Gestión de Consultas Médicas</h2>
+        <h2>Common Challenges in Dental Practice Management</h2>
         <div class="pain-cards">
           <div class="pain-card">
             <div class="pain-icon">😰</div>
-            <h3>Las Inasistencias Afectan tu Productividad</h3>
-            <p>El tiempo de consulta perdido impacta directamente en tus ingresos cuando los pacientes no se presentan o cancelan a último momento.</p>
+            <h3>Last-minute Cancellations Impact Revenue</h3>
+            <p>Empty chair time costs your practice thousands in lost revenue when patients cancel last minute or don't show up for their dental appointments.</p>
           </div>
           <div class="pain-card">
             <div class="pain-icon">📞</div>
-            <h3>Personal Abrumado con Tareas Administrativas</h3>
-            <p>Tu equipo pasa horas confirmando citas y reagendando pacientes en lugar de enfocarse en la atención y servicio al paciente.</p>
+            <h3>Staff Overwhelmed with Phone Calls</h3>
+            <p>Your dental assistants spend hours on the phone confirming appointments and rescheduling patients instead of focusing on chairside assistance and patient care.</p>
           </div>
         </div>
       </div>
     </section>
 
     <!-- 3. Industry-Specific Benefits -->
-    <section class="benefits-medical">
+    <section class="benefits-dental">
       <div class="container">
-        <h2>Diseñado para Consultas Médicas</h2>
+        <h2>Tailored for Dental Practices</h2>
         <div class="benefits-grid">
           <div class="benefit-card">
-            <div class="benefit-icon">👨‍⚕️</div>
-            <h3>Gestión de Consultas</h3>
-            <p>Configura diferentes tipos de consulta y duración según el tipo de atención médica</p>
+            <div class="benefit-icon">🦷</div>
+            <h3>Treatment-Specific Scheduling</h3>
+            <p>Set different durations for cleanings, fillings, root canals, and other dental procedures</p>
           </div>
           <div class="benefit-card">
-            <div class="benefit-icon">📊</div>
-            <h3>Historial Clínico Digital</h3>
-            <p>Accede al historial de consultas y seguimiento de cada paciente</p>
+            <div class="benefit-icon">💉</div>
+            <h3>Chair & Equipment Management</h3>
+            <p>Optimize your operatory usage and dental equipment scheduling</p>
           </div>
           <div class="benefit-card">
             <div class="benefit-icon">📱</div>
-            <h3>Comunicación con Pacientes</h3>
-            <p>Recordatorios automáticos de citas con instrucciones de preparación</p>
+            <h3>Patient Communication</h3>
+            <p>Automated appointment reminders with pre-visit instructions (e.g., x-ray preparations)</p>
           </div>
           <div class="benefit-card">
             <div class="benefit-icon">📅</div>
-            <h3>Controles y Seguimiento</h3>
-            <p>Programa controles periódicos y gestiona tratamientos continuos</p>
+            <h3>Treatment Plan Follow-ups</h3>
+            <p>Automatic recalls for cleanings, check-ups, and treatment completions</p>
           </div>
         </div>
       </div>
@@ -99,28 +99,28 @@ const keywords = "software para médicos, agenda médica online, sistema de cita
     <HowItWorks />
     <Integrations />
 
-    <!-- 4. Medical-Specific Testimonials -->
-    <section class="testimonials-medical">
+    <!-- 4. Dental-Specific Testimonials -->
+    <section class="testimonials-dental">
       <div class="container">
-        <h2>Respaldado por Médicos Líderes</h2>
+        <h2>Trusted by Leading Dental Practices</h2>
         <div class="testimonials-grid">
           <div class="testimonial-card">
-            <p>"OntheDot ha transformado la gestión de mi consulta. Los pacientes valoran los recordatorios automáticos y la facilidad para agendar, mientras que mi equipo puede enfocarse en brindar una mejor atención."</p>
+            <p>"OntheDot reduced our no-show rate by 60% and helped us optimize our chair time. The automated recalls for hygiene appointments have significantly improved our patient retention."</p>
             <div class="author">
-              <img src="/testimonials/doctor-1.jpg" alt="Dr. Carlos Ramírez" />
+              <img src="/testimonials/dentist-1.jpg" alt="Dr. Sarah Mitchell" />
               <div>
-                <strong>Dr. Carlos Ramírez</strong>
-                <span>Medicina Interna, Clínica San José</span>
+                <strong>Dr. Sarah Mitchell</strong>
+                <span>General Dentist, Bright Smile Dental</span>
               </div>
             </div>
           </div>
           <div class="testimonial-card">
-            <p>"La gestión de controles y seguimiento de pacientes es mucho más eficiente ahora. El sistema nos ayuda a mantener un registro detallado y a programar las consultas de seguimiento de manera automática."</p>
+            <p>"The treatment-specific scheduling has been a game-changer for our orthodontic practice. We can now properly allocate time for different procedures and our staff spends less time on the phone."</p>
             <div class="author">
-              <img src="/testimonials/doctor-2.jpg" alt="Dra. Laura Sánchez" />
+              <img src="/testimonials/dentist-2.jpg" alt="Dr. James Chen" />
               <div>
-                <strong>Dra. Laura Sánchez</strong>
-                <span>Medicina Familiar, Centro Médico Bienestar</span>
+                <strong>Dr. James Chen</strong>
+                <span>Orthodontist, Advanced Orthodontics</span>
               </div>
             </div>
           </div>
@@ -135,9 +135,9 @@ const keywords = "software para médicos, agenda médica online, sistema de cita
 </BaseLayout>
 
 <style>
-  /* Hero específico para médicos */
+  /* Hero específico para dentistas */
   .hero {
-    background: linear-gradient(135deg, #e9d5ff 0%, #ffffff 100%);
+    background: linear-gradient(135deg, #e0f2fe 0%, #ffffff 100%);
     padding: 4rem 0 6rem;
   }
 
@@ -203,7 +203,7 @@ const keywords = "software para médicos, agenda médica online, sistema de cita
   }
 
   .pain-card h3 {
-    color: #a855f7;
+    color: #0ea5e9;
     margin-bottom: 1rem;
     font-size: 1.5rem;
   }
@@ -214,12 +214,12 @@ const keywords = "software para médicos, agenda médica online, sistema de cita
   }
 
   /* Benefits Section */
-  .benefits-medical {
+  .benefits-dental {
     padding: 4rem 0;
     background: #f8fafc;
   }
 
-  .benefits-medical h2 {
+  .benefits-dental h2 {
     text-align: center;
     font-size: 2.5rem;
     margin-bottom: 3rem;
@@ -248,7 +248,7 @@ const keywords = "software para médicos, agenda médica online, sistema de cita
   }
 
   .benefit-card h3 {
-    color: #a855f7;
+    color: #0ea5e9;
     margin-bottom: 1rem;
     font-size: 1.25rem;
   }
@@ -259,12 +259,12 @@ const keywords = "software para médicos, agenda médica online, sistema de cita
   }
 
   /* Testimonials Section */
-  .testimonials-medical {
+  .testimonials-dental {
     padding: 4rem 0;
     background: white;
   }
 
-  .testimonials-medical h2 {
+  .testimonials-dental h2 {
     text-align: center;
     font-size: 2.5rem;
     margin-bottom: 3rem;
@@ -283,7 +283,7 @@ const keywords = "software para médicos, agenda médica online, sistema de cita
     background: #f8fafc;
     padding: 2rem;
     border-radius: 12px;
-    border-left: 4px solid #a855f7;
+    border-left: 4px solid #0ea5e9;
   }
 
   .testimonial-card p {
@@ -326,7 +326,7 @@ const keywords = "software para médicos, agenda médica online, sistema de cita
     border-radius: 25px;
     box-shadow: 0 20px 40px rgba(0,0,0,0.1);
     padding: 30px 20px;
-    border: 8px solid #a855f7;
+    border: 8px solid #0ea5e9;
     margin: 2rem auto 0;
   }
 
@@ -345,7 +345,7 @@ const keywords = "software para médicos, agenda médica online, sistema de cita
   }
 
   .slot.booked {
-    background: #a855f7;
+    background: #0ea5e9;
     color: white;
   }
 

@@ -1,0 +1,842 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Benefits from '../components/Benefits.astro';
+import HowItWorks from '../components/HowItWorks.astro';
+import Integrations from '../components/Integrations.astro';
+import Testimonials from '../components/Testimonials.astro';
+import FAQ from '../components/FAQ.astro';
+import FinalCTA from '../components/FinalCTA.astro';
+import Footer from '../components/Footer.astro';
+
+const metaDescription = "Optimize your nutrition practice with OntheDot. Scheduling software designed for nutritionists, with patient tracking, automated reminders, and meal plan management. Perfect for private practices and nutrition centers.";
+const keywords = "nutritionist scheduling software, dietitian appointments, nutrition practice management, meal plan software, nutrition clinic software, dietitian booking system";
+---
+
+<BaseLayout 
+  title="Scheduling and Management Software for Nutritionists | OntheDot" 
+  description={metaDescription}
+  keywords={keywords}
+>
+  <Header />
+  <!-- Limited Time Offer Banner -->
+  <div class="offer-banner">
+    🎉 Get Your First Month Free—Limited Time Offer!
+  </div>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="hero" id="main-content">
+      <div class="container">
+        <div class="hero-grid">
+          <div class="hero-content">
+            <div class="floating-badge">🎉 1 Month Free</div>
+            <h1>Grow Your Nutrition Practice Without Managing Your Schedule</h1>
+            <p class="hero-subtitle">Clients book, confirm, and pay on their own while you focus on helping them. Get your first month free today.</p>
+            
+            <div class="trust-badges">
+              <span>📲 Digitize Your Practice</span>
+              <span>🚀 Zero Learning Curve</span>
+              <span>⏱️ Live in 15 Minutes</span>
+            </div>
+
+            <div class="hero-cta">
+              <a href="#contact" class="btn btn-primary">Start Free for 30 Days</a>
+              <button type="button" class="btn btn-secondary" onclick="openWaitlistModal()">
+                Join Waitlist & Get Free Year
+              </button>
+            </div>
+
+            <div class="hero-testimonial">
+              <blockquote>
+                "OntheDot keeps my schedule full and payments coming in without me managing anything. Now I can truly focus on my clients."
+              </blockquote>
+              <div class="testimonial-author">
+                <div class="author-info">
+                  <span class="author-name">– Maria, Nutritionist</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-mockup">
+            <div class="mockup-phone">
+              <div class="calendar-preview">
+                <div class="calendar-header">
+                  <h4>Your Optimized Schedule</h4>
+                  <span class="buffer-indicator">15 min buffer between appointments</span>
+                </div>
+
+                <div class="services-list">
+                  <div class="service">🥗 Initial Consult – 60 min</div>
+                  <div class="service">📊 Follow-Up – 45 min</div>
+                  <div class="service">🍎 Meal Planning – 90 min</div>
+                </div>
+
+                <div class="appointments">
+                  <div class="slot booked">
+                    <span class="time">9:00</span>
+                    <div class="details">
+                      <strong>Sarah M. – Initial Consult</strong>
+                      <span class="tags">
+                        <span class="tag paid">Paid $80 ✔️</span>
+                        <span class="tag confirmed">Confirmed ✔️</span>
+                      </span>
+                    </div>
+                  </div>
+                  <div class="slot buffer">15 min buffer</div>
+                  <div class="slot booked">
+                    <span class="time">10:15</span>
+                    <div class="details">
+                      <strong>John P. – Follow-up Session #3</strong>
+                      <span class="tags">
+                        <span class="tag paid">Paid $60 ✔️</span>
+                        <span class="tag confirmed">Confirmed ✔️</span>
+                      </span>
+                    </div>
+                  </div>
+                  <div class="slot buffer">15 min buffer</div>
+                  <div class="slot booked">
+                    <span class="time">11:30</span>
+                    <div class="details">
+                      <strong>Emma R. – Meal Planning</strong>
+                      <span class="tags">
+                        <span class="tag paid">Paid $100 ✔️</span>
+                        <span class="tag confirmed">Confirmed ✔️</span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="calendar-footer">
+                  Your schedule runs itself, maximizing your time and income.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Quick Benefits Section -->
+    <section class="quick-benefits-section">
+      <div class="container">
+        <div class="benefits-wrapper">
+          <div class="benefit-check">✅ Clients book themselves</div>
+          <div class="benefit-check">✅ Payments collected for you</div>
+          <div class="benefit-check">✅ Schedule fills while you work</div>
+        </div>
+        <div class="time-savings">
+          Save up to 10 hours per week
+        </div>
+      </div>
+    </section>
+
+    <!-- No Manual Work Section -->
+    <section class="no-manual-work-section">
+      <div class="container">
+        <h2>Focus on Your Clients, Not Administrative Tasks</h2>
+        <div class="work-items">
+          <div class="work-item">
+            <span class="icon">⏰</span>
+            <span class="text">No manual scheduling</span>
+          </div>
+          <div class="work-item">
+            <span class="icon">🔔</span>
+            <span class="text">No chasing confirmations</span>
+          </div>
+          <div class="work-item">
+            <span class="icon">💳</span>
+            <span class="text">No payment follow-ups</span>
+          </div>
+        </div>
+
+        <div class="benefits-checklist">
+          <div class="checklist-item">
+            <span class="check">✅</span>
+            <span>Clients book themselves</span>
+          </div>
+          <div class="checklist-item">
+            <span class="check">✅</span>
+            <span>Payments collected for you</span>
+          </div>
+          <div class="checklist-item">
+            <span class="check">✅</span>
+            <span>Schedule fills while you work</span>
+          </div>
+        </div>
+
+        <div class="time-savings-visualization">
+          <h3>Our Users Save Up To 10 Hours Per Week</h3>
+          <div class="time-comparison">
+            <div class="time-block">
+              <span class="hours">15h</span>
+              <span class="description">Hours/week<br/>Manual Work</span>
+              <div class="time-bar manual"></div>
+            </div>
+
+            <div class="arrow-block">
+              <span class="arrow">→</span>
+              <div class="savings-pill">Save 10h/week</div>
+            </div>
+
+            <div class="time-block">
+              <span class="hours">5h</span>
+              <span class="description">Hours/week<br/>With OntheDot</span>
+              <div class="time-bar automated">
+                <div class="bar-fill"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="extra-time-benefit">
+            <div class="benefit-icon">👥</div>
+            <h4>+10 Extra Hours Per Week for Your Clients</h4>
+            <p>More time for consultations, personalized attention, and growing your practice</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <Benefits />
+    <HowItWorks />
+    <Integrations />
+    <FAQ />
+    <FinalCTA />
+  </main>
+  <Footer />
+</BaseLayout>
+
+<style>
+  /* Offer Banner */
+  .offer-banner {
+    background: #16a34a;
+    color: white;
+    text-align: center;
+    padding: 0.5rem;
+    font-weight: 600;
+  }
+
+  /* Hero Section */
+  .hero {
+    background: linear-gradient(135deg, #bbf7d0 0%, #ffffff 100%);
+    padding: 6rem 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .floating-badge {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    background: #16a34a;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-weight: 600;
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .hero-content {
+    text-align: left;
+  }
+
+  .hero h1 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: var(--color-dark);
+    margin-bottom: 1.5rem;
+    line-height: 1.1;
+  }
+
+  .hero-subtitle {
+    font-size: 1.5rem;
+    color: var(--color-gray-600);
+    margin-bottom: 2rem;
+  }
+
+  .trust-badges {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+  }
+
+  .trust-badges span {
+    background: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-weight: 500;
+    color: var(--color-gray-700);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 0;
+  }
+
+  .hero-mockup {
+    width: 100%;
+    max-width: 450px;
+    margin: 0 auto;
+  }
+
+  .mockup-phone {
+    width: 100%;
+    background: white;
+    border-radius: 25px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    padding: 2rem;
+    transform: rotate(-5deg);
+    transition: transform 0.3s ease;
+  }
+
+  .mockup-phone:hover {
+    transform: rotate(0deg);
+  }
+
+  .calendar-header {
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+
+  .calendar-header h4 {
+    color: #16a34a;
+    margin: 0;
+    margin-bottom: 0.5rem;
+  }
+
+  .buffer-indicator {
+    font-size: 0.9rem;
+    color: var(--color-gray-600);
+  }
+
+  .services-list {
+    background: #f0fdf4;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+  }
+
+  .service {
+    padding: 0.5rem;
+    color: var(--color-gray-700);
+    font-weight: 500;
+  }
+
+  .appointments {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .slot {
+    padding: 1rem;
+    border-radius: 8px;
+    background: #f8fafc;
+  }
+
+  .slot.booked {
+    background: #16a34a;
+    color: white;
+  }
+
+  .slot.buffer {
+    background: #f0fdf4;
+    color: #16a34a;
+    text-align: center;
+    font-size: 0.9rem;
+    padding: 0.25rem;
+  }
+
+  .slot .time {
+    font-weight: 600;
+    margin-right: 0.5rem;
+  }
+
+  .slot .details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .tags {
+    display: flex;
+    gap: 0.5rem;
+    font-size: 0.8rem;
+  }
+
+  .tag {
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    background: rgba(255,255,255,0.2);
+  }
+
+  .calendar-footer {
+    text-align: center;
+    margin-top: 1.5rem;
+    color: var(--color-gray-600);
+    font-size: 0.9rem;
+  }
+
+  /* No Manual Work Section */
+  .no-manual-work-section {
+    background: white;
+    padding: 6rem 0;
+    text-align: center;
+  }
+
+  .no-manual-work-section h2 {
+    color: var(--color-dark);
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+  }
+
+  .work-items {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 4rem;
+  }
+
+  .work-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: #f8fafc;
+    padding: 1rem 2rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+
+  .work-item .icon {
+    font-size: 1.5rem;
+  }
+
+  .benefits-checklist {
+    max-width: 500px;
+    margin: 0 auto 4rem;
+    background: #f0fdf4;
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+  }
+
+  .checklist-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: white;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--color-gray-800);
+    transition: transform 0.2s ease;
+  }
+
+  .checklist-item:last-child {
+    margin-bottom: 0;
+  }
+
+  .checklist-item:hover {
+    transform: translateX(5px);
+  }
+
+  .check {
+    font-size: 1.25rem;
+  }
+
+  .time-savings-visualization {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 3rem;
+    background: #f8fafc;
+    border-radius: 20px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+  }
+
+  .time-savings-visualization h3 {
+    font-size: 2rem;
+    color: var(--color-gray-800);
+    margin-bottom: 4rem;
+    text-align: center;
+  }
+
+  .time-comparison {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+    margin-bottom: 4rem;
+  }
+
+  .time-block {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .hours {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--color-gray-800);
+  }
+
+  .description {
+    font-size: 0.9rem;
+    color: var(--color-gray-600);
+    line-height: 1.4;
+  }
+
+  .time-bar {
+    width: 80px;
+    height: 200px;
+    border-radius: 40px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .time-bar.manual {
+    background: #94a3b8;
+  }
+
+  .time-bar.automated {
+    background: #e2e8f0;
+  }
+
+  .time-bar.automated .bar-fill {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 33%;
+    background: #16a34a;
+    border-radius: 40px;
+  }
+
+  .arrow-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .arrow {
+    font-size: 2.5rem;
+    color: #16a34a;
+    font-weight: bold;
+  }
+
+  .savings-pill {
+    background: #16a34a;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    white-space: nowrap;
+  }
+
+  .extra-time-benefit {
+    background: #f0fdf4;
+    padding: 2rem;
+    border-radius: 16px;
+    text-align: center;
+    margin-top: 2rem;
+  }
+
+  .benefit-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+
+  .extra-time-benefit h4 {
+    color: #16a34a;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .extra-time-benefit p {
+    color: var(--color-gray-600);
+    font-size: 1.1rem;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  /* Social Proof Section */
+  .social-proof {
+    background: #f8fafc;
+    padding: 4rem 0;
+  }
+
+  .mini-testimonial {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .mini-testimonial img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  .testimonial-content p {
+    font-style: italic;
+    color: var(--color-gray-700);
+    margin-bottom: 0.5rem;
+  }
+
+  .testimonial-content .author {
+    color: #16a34a;
+    font-weight: 600;
+  }
+
+  /* Journey Section */
+  .journey-section {
+    background: white;
+    padding: 4rem 0;
+  }
+
+  .journey-progress {
+    text-align: center;
+  }
+
+  .journey-progress h3 {
+    color: var(--color-gray-700);
+    margin-bottom: 2rem;
+  }
+
+  .progress-steps {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+  }
+
+  .step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .step-number {
+    width: 40px;
+    height: 40px;
+    background: var(--color-gray-200);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    color: var(--color-gray-600);
+  }
+
+  .step.active .step-number {
+    background: #16a34a;
+    color: white;
+  }
+
+  .step-text {
+    color: var(--color-gray-600);
+    font-weight: 500;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+
+  /* Buttons */
+  .btn {
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.2s;
+  }
+
+  .btn-primary {
+    background: #16a34a;
+    color: white;
+    text-decoration: none;
+  }
+
+  .btn-primary:hover {
+    background: #15803d;
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: #16a34a;
+    border: 2px solid #16a34a;
+    cursor: pointer;
+  }
+
+  .btn-secondary:hover {
+    background: rgba(22, 163, 74, 0.1);
+  }
+
+  /* Container */
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  /* Responsive */
+  @media (max-width: 1024px) {
+    .hero-grid {
+      gap: 2rem;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+    }
+
+    .hero-mockup {
+      max-width: 400px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .hero {
+      padding: 4rem 0;
+    }
+
+    .hero-grid {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+
+    .hero-content {
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+    }
+    
+    .hero-subtitle {
+      font-size: 1.2rem;
+    }
+    
+    .trust-badges {
+      justify-content: center;
+    }
+    
+    .hero-cta {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .hero-mockup {
+      max-width: 350px;
+      order: -1;
+    }
+
+    .mockup-phone {
+      transform: rotate(0deg);
+    }
+
+    .floating-badge {
+      position: static;
+      display: inline-block;
+      margin-bottom: 1.5rem;
+    }
+
+    .work-items {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .time-comparison {
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .time-block {
+      flex-direction: column;
+    }
+
+    .time-bar {
+      height: 60px;
+      width: 200px;
+      transform: rotate(-90deg);
+      margin: 2rem 0;
+    }
+
+    .arrow-block {
+      flex-direction: row;
+      width: 100%;
+      justify-content: center;
+    }
+
+    .arrow {
+      transform: rotate(90deg);
+    }
+  }
+
+  .hero-testimonial {
+    margin-top: 3rem;
+    text-align: left;
+    max-width: 600px;
+    margin: 3rem 0;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 16px;
+    backdrop-filter: blur(8px);
+  }
+
+  .hero-testimonial blockquote {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: var(--color-gray-700);
+    font-style: italic;
+    margin-bottom: 1rem;
+  }
+
+  .testimonial-author {
+    display: flex;
+    align-items: center;
+  }
+
+  .author-info {
+    margin-left: 0.5rem;
+  }
+
+  .author-name {
+    color: var(--color-gray-800);
+    font-weight: 500;
+  }
+
+  @media (max-width: 768px) {
+    .hero-testimonial {
+      text-align: center;
+      margin: 2rem auto 0;
+    }
+
+    .testimonial-author {
+      justify-content: center;
+    }
+  }
+</style> 
