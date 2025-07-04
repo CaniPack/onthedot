@@ -1,0 +1,68 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Online Scheduling App for Doctors | Free Trial" description="Manage your appointments and patients with our online scheduling app for doctors. Save time and reduce no-shows. Request your free demo now!">
+  <main>
+    <section class="hero">
+      <div class="container">
+        <h1>OntheDot Health: The online scheduling app for private practice doctors</h1>
+        <p>Manage your appointments, patients, and billing with a secure and professional online scheduler.</p>
+        <div class="actions">
+          <a href="#contact" class="btn btn-primary">I want more patients</a>
+          <a href="#demo" class="btn btn-secondary">Request free demo</a>
+        </div>
+      </div>
+    </section>
+  </main>
+</BaseLayout>
+
+<style>
+  .hero {
+    padding: 80px 0;
+    background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+    text-align: center;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  h1 {
+    font-size: 3rem;
+    color: #1e40af;
+    margin-bottom: 1.5rem;
+  }
+
+  p {
+    font-size: 1.25rem;
+    color: #64748b;
+    margin-bottom: 2rem;
+  }
+
+  .actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+  }
+
+  .btn {
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .btn-primary {
+    background: #16a34a;
+    color: white;
+  }
+
+  .btn-secondary {
+    background: white;
+    color: #16a34a;
+    border: 2px solid #16a34a;
+  }
+</style> 
